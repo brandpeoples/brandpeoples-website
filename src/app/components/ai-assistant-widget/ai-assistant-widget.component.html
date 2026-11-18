@@ -1,0 +1,187 @@
+<!-- Floating Brand Peoples AI Assistant Launcher & Chat Window (Luxury Industrial Dock) -->
+<div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans select-none print:hidden">
+
+  <!-- ========================================================================= -->
+  <!-- 1. REDESIGNED FLOATING STUDIO LAUNCHER (When Chat is Closed)               -->
+  <!-- ========================================================================= -->
+  @if (!aiService.isOpen()) {
+    <div class="relative flex items-center justify-end">
+      
+      <!-- Luxury Studio Capsule Pill Button -->
+      <button 
+        (click)="toggleChat()"
+        aria-label="Open Brand Peoples AI Studio Concierge"
+        class="btn-shimmer group relative flex items-center gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-zinc-950/95 backdrop-blur-xl border border-zinc-700/80 hover:border-white text-white shadow-[0_12px_40px_rgba(0,0,0,0.85)] hover:shadow-[0_16px_50px_rgba(255,255,255,0.12)] transition-all duration-300 active:scale-95 cursor-pointer">
+        
+        <!-- Ambient subtle hover halo -->
+        <span class="absolute -inset-0.5 rounded-full bg-white/10 blur-xs opacity-0 group-hover:opacity-100 transition-opacity"></span>
+
+        <!-- Live Status Radar Dot -->
+        <span class="relative flex h-2 w-2 shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+        </span>
+
+        <!-- Brand Icon / Modern Sparkle Emblem -->
+        <div class="w-5 h-5 rounded-md bg-white/10 border border-white/15 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black transition-colors">
+          <svg class="w-3.5 h-3.5 text-zinc-200 group-hover:text-black transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+          </svg>
+        </div>
+
+        <!-- Typography Badge -->
+        <div class="flex items-center gap-1.5 font-mono text-xs">
+          <span class="font-bold tracking-wider text-white uppercase text-[11px]">BP Concierge</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 hidden md:inline uppercase tracking-widest">Studio 3D</span>
+        </div>
+
+        <!-- Chevron Arrow Indicator -->
+        <svg class="w-3.5 h-3.5 text-zinc-500 group-hover:text-white transition-transform group-hover:translate-x-0.5 shrink-0 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+    </div>
+  }
+
+  <!-- ========================================================================= -->
+  <!-- 2. EXPANDED CHAT WINDOW                                                   -->
+  <!-- ========================================================================= -->
+  @if (aiService.isOpen()) {
+    <div 
+      class="w-[calc(100vw-2rem)] sm:w-[410px] h-[580px] max-h-[85vh] bg-zinc-950 text-white rounded-3xl shadow-float border border-zinc-800 flex flex-col overflow-hidden animate-fade-in-up">
+      
+      <!-- A. Header Bar -->
+      <div class="bg-black text-white px-4 py-3.5 flex items-center justify-between border-b border-zinc-700">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-white/10 p-1.5 border border-zinc-600 flex items-center justify-center shrink-0 shadow-xs">
+            <img src="images/brand/logo_white.png" alt="Brand Peoples Logo" class="w-full h-full object-contain" />
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="font-extrabold text-sm tracking-tight text-white lowercase font-sans">brandpeoples ai</span>
+              <span class="px-1.5 py-0.2 rounded-full bg-white text-black text-white text-[9px] font-mono font-bold uppercase tracking-wider">
+                STUDIO
+              </span>
+            </div>
+            <div class="flex items-center gap-1.5 text-[10.5px] text-zinc-300 font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <span>Online &bull; Custom Studio Hub</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <button 
+            (click)="clearHistory()" 
+            class="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800 transition cursor-pointer"
+            title="Clear Chat History">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </button>
+          <button 
+            (click)="toggleChat()" 
+            class="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800 transition cursor-pointer"
+            title="Close Assistant">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- B. Scrollable Chat Messages Container -->
+      <div 
+        #chatScrollContainer
+        class="flex-1 overflow-y-auto p-4 space-y-3.5 bg-zinc-900 text-xs sm:text-[13px] leading-relaxed">
+        
+        @for (msg of aiService.messages(); track msg.id) {
+          @if (msg.role === 'model') {
+            <!-- Model Message Bubble -->
+            <div class="flex items-start gap-2.5 max-w-[92%]">
+              <div class="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-[10px]">
+                BP
+              </div>
+              <div class="bg-white p-3.5 rounded-2xl rounded-tl-sm border border-zinc-800 text-[#202024] shadow-xs">
+                <div [innerHTML]="formatMessage(msg.text)"></div>
+                <div class="mt-1 text-[9px] text-zinc-400 text-right font-mono">
+                  {{ msg.timestamp | date:'shortTime' }}
+                </div>
+              </div>
+            </div>
+          } @else {
+            <!-- User Message Bubble -->
+            <div class="flex items-start justify-end gap-2 max-w-[88%] ml-auto">
+              <div class="bg-white text-black text-white p-3 rounded-2xl rounded-tr-sm shadow-xs font-semibold">
+                <p class="whitespace-pre-wrap">{{ msg.text }}</p>
+                <div class="mt-1 text-[9px] text-white/70 text-right font-mono">
+                  {{ msg.timestamp | date:'shortTime' }}
+                </div>
+              </div>
+            </div>
+          }
+        }
+
+        <!-- Typing Indicator -->
+        @if (aiService.isTyping()) {
+          <div class="flex items-center gap-2 max-w-[80%] animate-pulse">
+            <div class="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center shrink-0 font-bold text-[10px]">
+              BP
+            </div>
+            <div class="bg-white px-3 py-2 rounded-2xl rounded-tl-sm border border-zinc-800 flex items-center gap-1.5 shadow-xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-white text-black animate-bounce"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-white text-black animate-bounce delay-100"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-white text-black animate-bounce delay-200"></span>
+              <span class="text-[10px] text-zinc-400 ml-1">Consulting factory specs...</span>
+            </div>
+          </div>
+        }
+
+      </div>
+
+      <!-- C. Suggested Quick Chips -->
+      <div class="px-3 py-2 bg-white border-t border-zinc-800 overflow-x-auto whitespace-nowrap scrollbar-none flex items-center gap-1.5">
+        @for (chip of quickChips; track chip.label) {
+          <button 
+            (click)="sendQuery(chip.query)" 
+            class="px-2.5 py-1 rounded-full bg-[#f0eee9] hover:bg-white text-black hover:text-white border border-zinc-800 text-[#202024] text-[10.5px] font-medium transition-all shrink-0 cursor-pointer active:scale-95">
+            {{ chip.label }}
+          </button>
+        }
+      </div>
+
+      <!-- D. Input Field & Action Buttons -->
+      <div class="p-3 bg-white border-t border-zinc-800">
+        <div class="flex items-center gap-2">
+          <input 
+            type="text" 
+            [(ngModel)]="userInput"
+            (keydown)="handleKeyDown($event)"
+            [disabled]="aiService.isTyping()"
+            placeholder="Ask about 3D Studio, fabrics, bulk quotes..." 
+            class="flex-1 px-3.5 py-2.5 rounded-xl border border-zinc-800 bg-zinc-900 text-xs sm:text-sm text-[#202024] placeholder-[#777780] focus:outline-none focus:border-[#b45b3d] transition-all font-sans" />
+          
+          <button 
+            (click)="sendQuery()"
+            [disabled]="!userInput().trim() || aiService.isTyping()"
+            class="w-10 h-10 rounded-xl btn-accent disabled:opacity-30 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer shrink-0 active:scale-95"
+            aria-label="Send query">
+            <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19V5m0 0l-7 7m7-7l7 7"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-2 flex items-center justify-between text-[9.5px] text-zinc-400 px-1 font-mono">
+          <span>Brand Peoples AI Engine</span>
+          <a href="https://wa.me/919944107633" target="_blank" rel="noopener noreferrer" class="text-white font-bold hover:underline flex items-center gap-1 transition">
+            <span>Direct WhatsApp Factory</span> &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+  }
+
+</div>
