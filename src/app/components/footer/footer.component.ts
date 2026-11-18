@@ -271,57 +271,71 @@ import { FormsModule } from '@angular/forms';
         </div>
 
         <!-- ========================================================================= -->
-        <!-- 3. BOTTOM UTILITY BAR & ACCREDITATION FOOTER (ZERO OVERLAP CLEARANCE)     -->
+        <!-- 3. SCULPTED LUXURY UTILITY BAR & ACCREDITATION CONSOLE                    -->
         <!-- ========================================================================= -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 text-xs text-zinc-500 pt-6 pb-36 sm:pb-28 lg:pb-20 font-mono border-t border-zinc-900/90 pr-0 md:pr-64">
+        <div class="rounded-3xl bg-zinc-950/90 border border-zinc-800/80 p-5 sm:p-6 backdrop-blur-md shadow-2xl space-y-5">
           
-          <!-- Copyright & Factory Hub -->
-          <div class="flex flex-wrap items-center gap-2">
-            <span>&copy; 2026 <strong class="text-zinc-200 font-bold">Brand Peoples</strong>. All rights reserved.</span>
-            <span class="text-zinc-700 hidden sm:inline">&bull;</span>
-            <span class="text-zinc-500">Engineered in Tiruppur, India.</span>
-            <span class="text-zinc-700 hidden sm:inline">&bull;</span>
-            <span class="text-zinc-500 inline-flex items-center gap-1">
-              <span>Developed by</span>
+          <!-- Top Row: Full Route Navigation Suite & Back to Top -->
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-900">
+            <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-mono">
+              <span class="text-[10px] text-zinc-500 uppercase tracking-widest mr-1 hidden sm:inline">Directory:</span>
+              <a routerLink="/" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Home</a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/catalog" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Catalogs</a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/customize" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors inline-flex items-center gap-1.5">
+                <span>3D Studio</span>
+                <span class="px-1.5 py-0.2 rounded bg-zinc-900 border border-zinc-700 text-[9px] text-emerald-400 font-bold">360°</span>
+              </a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/capabilities" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Capabilities</a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/quality" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Quality Lab</a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/gift-kits" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Gift Kits</a>
+              <span class="text-zinc-800">&bull;</span>
+              <a routerLink="/contact-us" class="px-2.5 py-1 rounded-lg text-white font-bold hover:bg-zinc-900 transition-colors">Contact &amp; Quotes</a>
+            </div>
+
+            <!-- Back to Top Elevator Button -->
+            <button 
+              (click)="scrollToTop()" 
+              class="self-start md:self-auto shrink-0 px-3.5 py-1.5 rounded-xl border border-zinc-800 bg-zinc-900/80 hover:bg-white hover:text-black hover:border-white text-zinc-300 text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer group active:scale-95 shadow-sm">
+              <span>Back to Top</span>
+              <svg class="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Bottom Row: Copyright, Manufacturing Hub & Developer Credit -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 text-xs font-mono text-zinc-500">
+            
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-zinc-400">&copy; 2026 <strong class="text-white font-bold">Brand Peoples</strong>. All rights reserved.</span>
+              <span class="text-zinc-800 hidden sm:inline">&bull;</span>
+              <span class="inline-flex items-center gap-1.5 text-zinc-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Engineered in Tiruppur, India</span>
+              </span>
+            </div>
+
+            <!-- Developer Capsule Pill -->
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-zinc-500">Developed by</span>
               <a 
                 href="https://arivomtechnologies.com/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="text-zinc-300 hover:text-white underline underline-offset-2 transition-colors decoration-zinc-700 hover:decoration-white font-medium inline-flex items-center gap-1"
-                title="Arivom Technologies">
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-200 hover:text-white transition-all text-xs font-bold shadow-xs hover:shadow-md cursor-pointer group"
+                title="Arivom Technologies — Official Website">
                 <span>Arivom Technologies</span>
-                <svg class="w-2.5 h-2.5 text-zinc-500 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <svg class="w-3 h-3 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
               </a>
-            </span>
-          </div>
+            </div>
 
-          <!-- Complete Utility Navigation Matrix & Back to Top -->
-          <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-2.5 text-zinc-400">
-            <a routerLink="/" class="hover:text-white transition">Home</a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/catalog" class="hover:text-white transition">Catalogs</a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/customize" class="hover:text-white transition flex items-center gap-1">
-              <span>3D Studio</span>
-              <span class="px-1.5 py-0.2 rounded bg-zinc-900 border border-zinc-700 text-[9px] text-emerald-400 font-bold">360°</span>
-            </a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/capabilities" class="hover:text-white transition">Capabilities</a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/quality" class="hover:text-white transition">Quality Lab</a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/gift-kits" class="hover:text-white transition">Gift Kits</a>
-            <span class="text-zinc-800">&bull;</span>
-            <a routerLink="/contact-us" class="hover:text-white transition font-bold text-zinc-200">Contact &amp; Quotes</a>
-            <span class="text-zinc-800">&bull;</span>
-            
-            <!-- Back to Top Button -->
-            <button 
-              (click)="scrollToTop()" 
-              class="hover:text-white transition flex items-center gap-1 cursor-pointer text-zinc-400 hover:text-white group">
-              <span>Top</span>
-              <svg class="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-            </button>
           </div>
 
         </div>
