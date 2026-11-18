@@ -10,114 +10,131 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     <!-- ========================================================================= -->
     <!-- 1. PURE BLACK & WHITE MINIMALIST NAVIGATION BAR                           -->
     <!-- ========================================================================= -->
-    <header class="bg-black/95 backdrop-blur-md sticky top-0 z-40 border-b border-zinc-800 transition-all duration-200">
-      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20 gap-4">
+    <header class="bg-black sticky top-0 z-40 border-b border-zinc-900 transition-all duration-200">
+      <div class="max-w-[1600px] mx-auto px-3 sm:px-5 lg:px-6">
+        <div class="flex items-center justify-between h-16 sm:h-[68px] gap-2 lg:gap-3 xl:gap-4">
           
           <!-- Brand Logo Lockup (Monochrome Matching Screenshot) -->
-          <a routerLink="/" class="flex items-center gap-3 group shrink-0 select-none">
+          <a routerLink="/" class="flex items-center gap-2 sm:gap-2.5 group shrink-0 select-none">
             <img 
               src="images/brand/logo_white.png" 
               alt="Brand Peoples Logo" 
-              class="w-8 h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-300" />
+              class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200" />
 
             <div class="flex flex-col whitespace-nowrap">
-              <span class="font-bold text-xl tracking-tight text-white group-hover:text-zinc-300 transition-colors lowercase font-sans">
+              <span class="font-bold text-base sm:text-lg xl:text-xl tracking-tight text-white group-hover:text-zinc-200 transition-colors lowercase font-sans leading-none">
                 brandpeoples
               </span>
-              <span class="text-[8px] font-mono tracking-[0.18em] text-zinc-400 uppercase">
+              <span class="text-[7px] sm:text-[7.5px] font-mono tracking-[0.16em] text-zinc-400 uppercase mt-0.5">
                 STUDIO &bull; CUSTOM 3D &bull; MERCH
               </span>
             </div>
           </a>
 
           <!-- Centered Navigation Links (High Contrast Monochrome) -->
-          <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2.5 h-full shrink-0">
+          <nav class="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3.5 h-full shrink-0">
             <!-- Home -->
             <a routerLink="/" 
                [routerLinkActiveOptions]="{exact: true}"
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaHome="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Home
-                <span *ngIf="rlaHome.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaHome.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
 
             <!-- 3D Customizer -->
             <a routerLink="/customizer" 
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaCustom="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1 flex items-center gap-1.5">
                 <span>3D Customizer</span>
-                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-bold uppercase rounded bg-white text-black">
+                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-black tracking-wider uppercase rounded-[3px] bg-white text-black leading-none">
                   3D LIVE
                 </span>
-                <span *ngIf="rlaCustom.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaCustom.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
 
             <!-- Catalogs Navigation -->
             <a routerLink="/catalog" 
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaCat="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Catalogs
-                <span *ngIf="rlaCat.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaCat.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
 
             <!-- Printing Technologies -->
             <a routerLink="/capabilities" 
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaCap="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Technology
-                <span *ngIf="rlaCap.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaCap.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
 
             <!-- Quality Standards -->
             <a routerLink="/quality" 
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaQual="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Quality &amp; Lab
-                <span *ngIf="rlaQual.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaQual.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+              </span>
+            </a>
+
+            <!-- Gift Kits Navigation -->
+            <a routerLink="/gift-kits" 
+               routerLinkActive="text-white font-medium"
+               #rlaGifts="routerLinkActive"
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+              <span class="relative py-1 flex items-center gap-1.5">
+                <span>Gift Kits</span>
+                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-bold tracking-wider uppercase rounded-[3px] bg-zinc-900 border border-zinc-700 text-zinc-300 leading-none">
+                  7 PACKS
+                </span>
+                <span *ngIf="rlaGifts.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
 
             <!-- Contact & Quotes -->
             <a routerLink="/contact-us" 
-               routerLinkActive="text-white font-bold"
+               routerLinkActive="text-white font-medium"
                #rlaContact="routerLinkActive"
-               class="h-20 flex items-center px-3 text-xs xl:text-sm font-semibold text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Contact &amp; Quotes
-                <span *ngIf="rlaContact.isActive" class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+                <span *ngIf="rlaContact.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
               </span>
             </a>
           </nav>
 
           <!-- Right Action Buttons (High-Contrast White on Black) -->
-          <div class="hidden lg:flex items-center gap-2.5 xl:gap-3 shrink-0">
+          <div class="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
+            <!-- Phone Call Pill with Call Symbol -->
             <a href="tel:9944107633" 
-               class="hidden xl:inline-flex hover-lift-sm active:scale-95 whitespace-nowrap px-3.5 py-2 text-xs font-mono font-bold text-zinc-300 border border-zinc-800 rounded-full hover:bg-zinc-900 hover:border-zinc-700 transition-all items-center gap-1.5 shrink-0">
-              <span>+91 99441 07633</span>
+               title="Call +91 99441 07633"
+               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3 py-1.5 xl:px-3.5 xl:py-2 text-xs font-mono font-medium text-white border border-zinc-800 rounded-full hover:bg-zinc-900 hover:border-zinc-700 transition-all inline-flex items-center gap-1.5 shrink-0">
+              <svg class="w-3.5 h-3.5 text-zinc-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <span class="hidden xl:inline">+91 99441 07633</span>
+              <span class="inline xl:hidden text-[11px] font-sans">Call</span>
             </a>
 
             <!-- Inverted Solid White Button -->
             <a routerLink="/customizer" 
-               class="btn-shimmer hover-lift-sm active:scale-95 whitespace-nowrap px-5 py-2.5 text-xs xl:text-sm font-black text-black bg-white hover:bg-zinc-200 rounded-full shadow-bw transition-all inline-flex items-center gap-2 shrink-0 group cursor-pointer uppercase tracking-wider">
-              <span>3D Studio</span>
-              <svg class="w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
+               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3.5 py-1.5 xl:px-4 xl:py-2 text-xs font-black text-black bg-white hover:bg-zinc-200 rounded-full transition-all inline-flex items-center shrink-0 cursor-pointer uppercase tracking-wider">
+              <span>3D STUDIO</span>
             </a>
           </div>
 
@@ -168,6 +185,12 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Quality Standards
         </a>
+        <a routerLink="/gift-kits" (click)="closeMobileMenu()" 
+           routerLinkActive="bg-zinc-900 text-white font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition flex items-center justify-between">
+          <span>Corporate Gift Kits</span>
+          <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-zinc-800 text-zinc-300 border border-zinc-700">7 PACKS</span>
+        </a>
         <a routerLink="/contact-us" (click)="closeMobileMenu()" 
            routerLinkActive="bg-zinc-900 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
@@ -175,8 +198,11 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
         </a>
 
         <div class="pt-3 border-t border-zinc-800 flex flex-col gap-2">
-          <a href="tel:9944107633" class="w-full text-center py-2.5 border border-zinc-800 rounded-xl font-mono text-zinc-300 text-sm">
-            Call: +91 99441 07633
+          <a href="tel:9944107633" class="w-full text-center py-2.5 border border-zinc-800 rounded-xl font-mono text-zinc-300 text-sm flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <span>Call: +91 99441 07633</span>
           </a>
           <a routerLink="/customizer" (click)="closeMobileMenu()" class="w-full text-center py-3 bg-white text-black font-black uppercase text-sm rounded-xl shadow-md">
             Open 3D Studio &rarr;
@@ -188,15 +214,12 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     <!-- ========================================================================= -->
     <!-- 2. MONOCHROME PRODUCTION RADAR TICKER                                     -->
     <!-- ========================================================================= -->
-    <div class="bg-zinc-950 text-zinc-400 text-xs py-2.5 border-b border-zinc-800/80 overflow-hidden relative shadow-sm font-mono">
-      <div class="max-w-[1440px] mx-auto flex items-center">
+    <div class="bg-black text-zinc-400 text-xs py-2 border-b border-zinc-900 overflow-hidden relative shadow-sm font-mono">
+      <div class="max-w-[1600px] mx-auto flex items-center">
         
         <!-- Pinned Static Label on Left -->
-        <div class="shrink-0 bg-zinc-950 z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-zinc-800 shadow-[4px_0_12px_rgba(0,0,0,0.9)]">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-          </span>
+        <div class="shrink-0 bg-black z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-zinc-900 shadow-[4px_0_12px_rgba(0,0,0,0.95)]">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-white"></span>
           <span class="font-black uppercase tracking-wider text-white text-[11px] whitespace-nowrap">
             STUDIO RADAR:
           </span>
@@ -208,22 +231,19 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
             
             <!-- MARQUEE SET 1 -->
             <div class="flex items-center gap-6 whitespace-nowrap">
-              <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="bg-zinc-900 text-white border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
-                  ● 3D SILICONE LINES ACTIVE
-                </span>
-                <span class="text-white font-bold">₹3.20 / Pc</span>
-                <span class="text-zinc-400">• 48h Batch Ready</span>
+              <div class="flex items-center gap-1.5 whitespace-nowrap">
+                <span class="text-white font-bold">3.20 / Pc</span>
+                <span class="text-zinc-400">&bull; 48h Batch Ready</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-300">WEBGL 3D VIEWPORT:</span>
-                <span class="text-white font-bold bg-zinc-900 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
+                <span class="text-zinc-400 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
+                <span class="text-white font-medium bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
                 <span class="bg-zinc-900 text-zinc-200 border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
@@ -232,34 +252,31 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
                 <span class="text-white font-bold">SAME-DAY DISPATCH</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-300">BIO-WASHED COMBED COTTON:</span>
-                <span class="text-white font-bold">180 – 240 GSM &bull; OEKO-TEX STD 100</span>
+                <span class="text-zinc-400 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
+                <span class="text-white font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
             </div>
 
-            <!-- MARQUEE SET 2 (DUPLICATE) -->
+            <!-- MARQUEE SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
             <div class="flex items-center gap-6 whitespace-nowrap" aria-hidden="true">
-              <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="bg-zinc-900 text-white border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
-                  ● 3D SILICONE LINES ACTIVE
-                </span>
-                <span class="text-white font-bold">₹3.20 / Pc</span>
-                <span class="text-zinc-400">• 48h Batch Ready</span>
+              <div class="flex items-center gap-1.5 whitespace-nowrap">
+                <span class="text-white font-bold">3.20 / Pc</span>
+                <span class="text-zinc-400">&bull; 48h Batch Ready</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-300">WEBGL 3D VIEWPORT:</span>
-                <span class="text-white font-bold bg-zinc-900 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
+                <span class="text-zinc-400 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
+                <span class="text-white font-medium bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
                 <span class="bg-zinc-900 text-zinc-200 border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
@@ -268,14 +285,14 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
                 <span class="text-white font-bold">SAME-DAY DISPATCH</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-300">BIO-WASHED COMBED COTTON:</span>
-                <span class="text-white font-bold">180 – 240 GSM &bull; OEKO-TEX STD 100</span>
+                <span class="text-zinc-400 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
+                <span class="text-white font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
               </div>
 
-              <span class="text-zinc-600">&bull;</span>
+              <span class="text-zinc-700">&bull;</span>
             </div>
 
           </div>

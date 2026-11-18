@@ -205,14 +205,128 @@
 }
 
 /* Stagger Delays */
-.delay-75  { animation-delay: 75ms; }
-.delay-100 { animation-delay: 100ms; }
-.delay-150 { animation-delay: 150ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-250 { animation-delay: 250ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
+.delay-50  { animation-delay: 50ms !important; }
+.delay-75  { animation-delay: 75ms !important; }
+.delay-100 { animation-delay: 100ms !important; }
+.delay-150 { animation-delay: 150ms !important; }
+.delay-200 { animation-delay: 200ms !important; }
+.delay-250 { animation-delay: 250ms !important; }
+.delay-300 { animation-delay: 300ms !important; }
+.delay-350 { animation-delay: 350ms !important; }
+.delay-400 { animation-delay: 400ms !important; }
+.delay-500 { animation-delay: 500ms !important; }
+
+/* ========================================================================= */
+/* TYPOGRAPHY & LETTER ENTRANCE ANIMATIONS (MASKED EDITORIAL MOTION)          */
+/* ========================================================================= */
+@keyframes letterRevealUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 110%, 0) skewY(1.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) skewY(0deg);
+  }
+}
+
+.animate-letter-reveal {
+  display: inline-block;
+  animation: letterRevealUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes wordRevealUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-word-reveal {
+  display: inline-block;
+  animation: wordRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.letter-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.letter-reveal.in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ========================================================================= */
+/* IMAGES MOTIONS & CINEMATIC DRIFT SUITE                                    */
+/* ========================================================================= */
+@keyframes imageDriftKenBurns {
+  0% {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.03) translate3d(-1%, -0.5%, 0);
+  }
+  100% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+}
+
+.animate-image-drift {
+  animation: imageDriftKenBurns 10s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+  will-change: transform;
+}
+
+.image-motion-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-motion-card img {
+  opacity: 0.35;
+  transform: scale(1.12) translate3d(0, 8px, 0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.6s ease;
+  will-change: opacity, transform, filter;
+}
+
+.image-motion-card.in-view img {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0, 0);
+}
+
+.image-motion-card:hover img {
+  transform: scale(1.08) translate3d(0, -2px, 0);
+  filter: grayscale(80%) contrast(1.15) brightness(1.05);
+}
+
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+.animate-ambient-float {
+  animation: ambientFloat 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ambient-float-slow {
+  animation: ambientFloat 7s ease-in-out infinite;
+  will-change: transform;
+}
 
 /* Micro-Interactions */
 .hover-lift {

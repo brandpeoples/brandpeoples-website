@@ -201,11 +201,14 @@ export const HERO_SLIDES: HeroSlide[] = [
           <img 
             [src]="slide.image" 
             [alt]="slide.cardTitle"
+            [attr.loading]="idx === 0 ? 'eager' : 'lazy'"
+            [attr.fetchpriority]="idx === 0 ? 'high' : 'low'"
+            decoding="async"
             [class.opacity-100]="activeSlideIndex() === idx"
-            [class.scale-100]="activeSlideIndex() === idx"
+            [class.animate-image-drift]="activeSlideIndex() === idx"
             [class.opacity-0]="activeSlideIndex() !== idx"
             [class.scale-105]="activeSlideIndex() !== idx"
-            class="absolute inset-0 w-full h-full object-cover object-right grayscale contrast-125 brightness-90 transition-all duration-1000 ease-out pointer-events-none" />
+            class="absolute inset-0 w-full h-full object-cover object-right grayscale contrast-125 brightness-90 transition-opacity duration-1000 ease-out pointer-events-none" />
         }
 
         <!-- Heavy Dark Scrim on Mobile & Tablet so white fabric/print textures NEVER clash with text -->
@@ -233,14 +236,24 @@ export const HERO_SLIDES: HeroSlide[] = [
             }
           }
 
-          <!-- Massive Bold Display Headline with Animated Silver Shimmer -->
-          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
-            <span class="text-white block">DESIGN YOUR</span>
-            <span class="text-white block">IDENTITY.</span>
-            <span class="block animate-silver-shimmer font-extrabold mt-1 tracking-tight">
-              WEAR YOUR BRAND.
-            </span>
-          </h1>
+          <!-- Massive Bold Display Headline with Animated Letter & Word Reveal -->
+          @for (slide of heroSlides; track slide.id; let idx = $index) {
+            @if (activeSlideIndex() === idx) {
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+                <span class="block overflow-hidden">
+                  <span class="block animate-letter-reveal">{{ slide.headlineLine1 }}</span>
+                </span>
+                <span class="block overflow-hidden">
+                  <span class="block animate-letter-reveal delay-100">{{ slide.headlineLine2 }}</span>
+                </span>
+                <span class="block overflow-hidden mt-1">
+                  <span class="block animate-silver-shimmer animate-letter-reveal delay-200 font-extrabold tracking-tight">
+                    {{ slide.headlineHighlight }}
+                  </span>
+                </span>
+              </h1>
+            }
+          }
 
           <!-- Subtitle Description (Animated on slide change) -->
           @for (slide of heroSlides; track slide.id; let idx = $index) {
@@ -306,40 +319,44 @@ export const HERO_SLIDES: HeroSlide[] = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-md">
+          <div class="scroll-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-md">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span>Apparel Collection &bull; 6 Curated Categories</span>
           </div>
-          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase font-display">
-            Curated Categories
-          </h2>
-          <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <div class="overflow-hidden">
+            <h2 class="letter-reveal text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase font-display">
+              Curated Categories
+            </h2>
+          </div>
+          <p class="scroll-reveal delay-100 text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Precision engineered heavy cottons, active stretch fabrics, and structured headwear.
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           @for (cat of categories; track cat.id; let idx = $index) {
-            <div class="theme-card-bw rounded-3xl overflow-hidden border border-zinc-800 flex flex-col justify-between group hover-lift transition-all duration-500 hover:border-zinc-400 bg-zinc-950 shadow-2xl relative">
+            <div [class]="'theme-card-bw rounded-3xl overflow-hidden border border-zinc-800 flex flex-col justify-between group hover-lift transition-all duration-500 hover:border-zinc-400 bg-zinc-950 shadow-2xl relative scroll-reveal stagger-' + ((idx % 3) + 1)">
               
-              <!-- Category Image Showcase Banner with Smooth Zoom Animation (Focused on Subject) -->
-              <div class="relative h-52 sm:h-56 w-full overflow-hidden bg-zinc-900 border-b border-zinc-850">
+              <!-- Category Image Showcase Banner with Motion Design & Ambient Floating Badges -->
+              <div class="image-motion-card relative h-52 sm:h-56 w-full overflow-hidden bg-zinc-900 border-b border-zinc-850">
                 <img 
                   [src]="cat.image" 
                   [alt]="cat.name" 
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-cover object-[75%_center] grayscale contrast-125 brightness-100 group-hover:scale-110 group-hover:brightness-110 group-hover:grayscale-0 transition-all duration-700 ease-out" />
                 
                 <!-- Dark Vignette Gradient on Bottom of Image -->
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent"></div>
 
-                <!-- Floating Top Left Index Pill -->
-                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md text-white font-mono text-xs font-bold border border-zinc-700/80 shadow-md">
+                <!-- Floating Top Left Index Pill with Ambient Float Motion -->
+                <span class="animate-ambient-float absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md text-white font-mono text-xs font-bold border border-zinc-700/80 shadow-md">
                   0{{ idx + 1 }}
                 </span>
 
-                <!-- Floating Top Right Badge -->
+                <!-- Floating Top Right Badge with Ambient Float Motion -->
                 @if (cat.badge) {
-                  <span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white text-black font-mono text-xs uppercase font-black tracking-wider shadow-lg">
+                  <span class="animate-ambient-float-slow absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white text-black font-mono text-xs uppercase font-black tracking-wider shadow-lg">
                     {{ cat.badge }}
                   </span>
                 }
@@ -436,11 +453,13 @@ export const HERO_SLIDES: HeroSlide[] = [
           <img 
             [src]="tech.image" 
             [alt]="tech.title"
+            loading="lazy"
+            decoding="async"
             [class.opacity-100]="activePrintTechIndex() === idx"
-            [class.scale-100]="activePrintTechIndex() === idx"
+            [class.animate-image-drift]="activePrintTechIndex() === idx"
             [class.opacity-0]="activePrintTechIndex() !== idx"
             [class.scale-105]="activePrintTechIndex() !== idx"
-            class="absolute inset-0 w-full h-full object-cover object-center lg:object-right grayscale contrast-125 brightness-95 transition-all duration-1000 ease-out pointer-events-none" />
+            class="absolute inset-0 w-full h-full object-cover object-center lg:object-right grayscale contrast-125 brightness-95 transition-opacity duration-1000 ease-out pointer-events-none" />
         }
 
         <!-- Dark Scrim on Mobile & Tablet so white fabric/print textures NEVER clash with text -->
@@ -468,14 +487,20 @@ export const HERO_SLIDES: HeroSlide[] = [
             }
           }
 
-          <!-- Massive Bold Display Headline (Dynamically Updating Based on Moving Images) -->
+          <!-- Massive Bold Display Headline with Animated Letter & Word Reveal -->
           @for (tech of printTechnologies; track tech.id; let idx = $index) {
             @if (activePrintTechIndex() === idx) {
-              <h2 class="animate-hero-slide-in text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
-                <span class="text-white block">{{ tech.headlineLine1 }}</span>
-                <span class="text-white block">{{ tech.headlineLine2 }}</span>
-                <span class="block animate-silver-shimmer font-extrabold mt-1 tracking-tight">
-                  {{ tech.headlineHighlight }}
+              <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+                <span class="block overflow-hidden">
+                  <span class="block animate-letter-reveal">{{ tech.headlineLine1 }}</span>
+                </span>
+                <span class="block overflow-hidden">
+                  <span class="block animate-letter-reveal delay-100">{{ tech.headlineLine2 }}</span>
+                </span>
+                <span class="block overflow-hidden mt-1">
+                  <span class="block animate-silver-shimmer animate-letter-reveal delay-200 font-extrabold tracking-tight">
+                    {{ tech.headlineHighlight }}
+                  </span>
                 </span>
               </h2>
             }
@@ -563,19 +588,21 @@ export const HERO_SLIDES: HeroSlide[] = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center space-y-3 mb-10">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-md">
+          <div class="scroll-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-md">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span>Social Proof &bull; 500+ Active Brands</span>
           </div>
-          <h3 class="text-xs sm:text-sm font-mono uppercase tracking-[0.22em] text-zinc-400 font-bold">
-            Trusted by Leading Streetwear Labels &bull; Creator Collectives &bull; Fast-Growth DTC Brands
-          </h3>
+          <div class="overflow-hidden">
+            <h3 class="letter-reveal text-xs sm:text-sm font-mono uppercase tracking-[0.22em] text-zinc-400 font-bold">
+              Trusted by Leading Streetwear Labels &bull; Creator Collectives &bull; Fast-Growth DTC Brands
+            </h3>
+          </div>
         </div>
 
         <!-- Monochrome Brand Badges Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6 items-center">
-          @for (brand of trustedBrands; track brand.name) {
-            <div class="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-850 hover:border-zinc-500 hover:bg-zinc-900/90 transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-default shadow-md hover-lift-sm">
+          @for (brand of trustedBrands; track brand.name; let bIdx = $index) {
+            <div [class]="'p-4 rounded-2xl bg-zinc-950/80 border border-zinc-850 hover:border-zinc-500 hover:bg-zinc-900/90 transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-default shadow-md hover-lift-sm scroll-reveal stagger-' + ((bIdx % 6) + 1)">
               <span class="text-lg sm:text-xl font-black text-zinc-400 group-hover:text-white transition-colors uppercase font-display tracking-wider">
                 {{ brand.symbol }}
               </span>
@@ -600,17 +627,19 @@ export const HERO_SLIDES: HeroSlide[] = [
         
         <!-- Section Header -->
         <div class="text-center space-y-4">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-xl">
+          <div class="scroll-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-xl">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span>Knowledge Base &bull; Production Standards</span>
           </div>
 
-          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase font-display">
-            Everything You Need To Know. <br />
-            <span class="inline-block animate-silver-shimmer font-extrabold mt-1">Before You Print.</span>
-          </h2>
+          <div class="overflow-hidden">
+            <h2 class="letter-reveal text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase font-display">
+              Everything You Need To Know. <br />
+              <span class="inline-block animate-silver-shimmer font-extrabold mt-1">Before You Print.</span>
+            </h2>
+          </div>
 
-          <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p class="scroll-reveal delay-100 text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Essential specifications covering zero minimum orders, fast turnaround dispatch, 50+ wash durability, and vector file upload guidelines.
           </p>
         </div>
