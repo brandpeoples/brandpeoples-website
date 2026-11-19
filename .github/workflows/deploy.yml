@@ -35,7 +35,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular Application
-        run: npx ng build --configuration production --base-href /brandpeoples-website/
+        run: npx ng build --configuration production --base-href /
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
