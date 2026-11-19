@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { EmailService } from '../../services/email.service';
 
 export interface ProductOption {
   id: string;
@@ -279,16 +280,22 @@ export interface ProductOption {
 
               <!-- Submit Button -->
               <button type="submit" 
-                      class="btn-shimmer hover-lift-sm active:scale-95 w-full py-4 text-xs font-mono font-black uppercase text-black bg-white hover:bg-zinc-200 rounded-xl transition-all cursor-pointer shadow-lg">
-                Submit Production Request &rarr;
+                      [disabled]="submitting()"
+                      class="btn-shimmer hover-lift-sm active:scale-95 w-full py-4 text-xs font-mono font-black uppercase text-black bg-white hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2">
+                @if (submitting()) {
+                  <span class="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+                  <span>Transmitting to Factory Desk...</span>
+                } @else {
+                  <span>Submit Production Request &rarr;</span>
+                }
               </button>
 
               @if (submitted()) {
                 <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-xs font-mono flex items-center gap-3 animate-fadeIn">
                   <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm shrink-0">&check;</span>
                   <div>
-                    <strong class="block text-white">Inquiry Successfully Logged</strong>
-                    <span class="text-zinc-400 text-[11px]">Assigned to Tiruppur Merchandising Desk. You will receive an initial BOM breakdown within 2–4 hours.</span>
+                    <strong class="block text-white">Inquiry Successfully Logged &amp; Transmitted</strong>
+                    <span class="text-zinc-400 text-[11px]">Assigned to Tiruppur Merchandising Desk. A confirmation email and initial BOM breakdown will reach your inbox within 2–4 hours.</span>
                   </div>
                 </div>
               }
@@ -484,6 +491,10 @@ export class ContactComponent {
   selectedTier = signal<string>('sample');
   selectedArtworkStatus = signal<string>('ready');
 
+  private emailService = inject(EmailService);
+  submitting = signal<boolean>(false);
+  submitted = signal<boolean>(false);
+
   formData = {
     name: '',
     brand: '',
@@ -492,11 +503,30 @@ export class ContactComponent {
     message: ''
   };
 
-  submitted = signal<boolean>(false);
-
-  onSubmit(event: Event): void {
+  async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
+    if (this.submitting()) return;
+
+    this.submitting.set(true);
+
+    const productName = this.productDisciplines.find(p => p.id === this.selectedProduct())?.name || this.selectedProduct();
+    const tierName = this.orderTiers.find(t => t.id === this.selectedTier())?.label || this.selectedTier();
+    const artworkName = this.artworkOptions.find(a => a.id === this.selectedArtworkStatus())?.name || this.selectedArtworkStatus();
+
+    await this.emailService.sendRfqEmails({
+      customer_name: this.formData.name,
+      company_brand: this.formData.brand || 'Independent Label / Creator',
+      customer_email: this.formData.email,
+      customer_phone: this.formData.phone,
+      product_name: productName,
+      order_tier: tierName,
+      artwork_status: artworkName,
+      message: this.formData.message
+    });
+
+    this.submitting.set(false);
     this.submitted.set(true);
+
     setTimeout(() => {
       this.submitted.set(false);
       this.formData = {
@@ -506,7 +536,7 @@ export class ContactComponent {
         phone: '',
         message: ''
       };
-    }, 6000);
+    }, 8000);
   }
 
   faqs = [
