@@ -19,12 +19,12 @@ export interface EmailRfqPayload {
 })
 export class EmailService {
   // =========================================================================
-  // EmailJS Configuration Keys (Replace with your keys from emailjs.com)
+  // EmailJS Configuration Keys
   // =========================================================================
-  private serviceId = 'YOUR_SERVICE_ID'; // e.g. 'service_brandpeoples'
-  private adminTemplateId = 'YOUR_ADMIN_TEMPLATE_ID'; // e.g. 'template_admin_rfq'
-  private customerTemplateId = 'YOUR_CUSTOMER_TEMPLATE_ID'; // e.g. 'template_customer_ack'
-  private publicKey = 'YOUR_PUBLIC_KEY'; // e.g. 'user_XXXXX' or Public Key from EmailJS Account
+  private serviceId = 'service_q2cg28i';
+  private adminTemplateId = 'template_nwn2b4e';
+  private customerTemplateId = 'template_j10fdn6';
+  private publicKey = 'GkR-YvQJQbxcD5gsg';
 
   /**
    * Dispatches both Admin Notification and Customer Confirmation emails
@@ -40,6 +40,13 @@ export class EmailService {
 
     const templateParams = {
       ...payload,
+      // Standard & Custom EmailJS aliases
+      to_name: 'Brand Peoples Admin',
+      from_name: payload.customer_name,
+      from_email: payload.customer_email,
+      to_email: payload.customer_email, // Used by EmailJS to address customer auto-reply
+      reply_to: payload.customer_email,
+      phone_number: payload.customer_phone,
       order_id: orderId,
       submission_date: submissionDate,
       customer_phone_clean: payload.customer_phone.replace(/[^0-9]/g, ''),
@@ -76,7 +83,11 @@ export class EmailService {
         this.publicKey
       );
 
-      await Promise.all([adminPromise, customerPromise]);
+      const results = await Promise.allSettled([adminPromise, customerPromise]);
+      const hasErrors = results.some(r => r.status === 'rejected');
+      if (hasErrors) {
+        console.warn('[EmailService] Partial dispatch notice:', results);
+      }
       return { success: true };
     } catch (err) {
       console.error('[EmailService] Failed to send EmailJS message:', err);
