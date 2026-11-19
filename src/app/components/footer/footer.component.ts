@@ -308,7 +308,7 @@ import { FormsModule } from '@angular/forms';
             </button>
           </div>
 
-          <!-- Bottom Row: Copyright, Manufacturing Hub & Developer Credit -->
+          <!-- Bottom Row: Copyright & Manufacturing Hub -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 text-xs font-mono text-zinc-500">
             
             <div class="flex flex-wrap items-center gap-2">
@@ -318,22 +318,6 @@ import { FormsModule } from '@angular/forms';
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 <span>Engineered in Tiruppur, India</span>
               </span>
-            </div>
-
-            <!-- Developer Capsule Pill -->
-            <div class="flex items-center gap-2">
-              <span class="text-[11px] text-zinc-500">Developed by</span>
-              <a 
-                href="https://arivomtechnologies.com/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 hover:border-zinc-600 text-zinc-200 hover:text-white transition-all text-xs font-bold shadow-xs hover:shadow-md cursor-pointer group"
-                title="Arivom Technologies — Official Website">
-                <span>Arivom Technologies</span>
-                <svg class="w-3 h-3 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                </svg>
-              </a>
             </div>
 
           </div>
