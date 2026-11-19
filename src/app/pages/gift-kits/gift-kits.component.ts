@@ -1,8 +1,7 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CartService } from '../../services/cart.service';
 
 export interface EnrichedBundle {
   code: string;
@@ -19,6 +18,11 @@ export interface EnrichedBundle {
   branding: string;
   badge?: string;
   image: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
 }
 
 @Component({
@@ -50,7 +54,7 @@ export interface EnrichedBundle {
           <!-- Hero Copy & Metrics (7 cols) -->
           <div class="lg:col-span-7 space-y-6">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-zinc-800 text-xs font-mono uppercase tracking-widest shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
               <span>7 TURNKEY MERCHANDISE PACKAGES &bull; ZERO PLASTIC</span>
             </div>
 
@@ -84,7 +88,7 @@ export interface EnrichedBundle {
                  rel="noopener noreferrer"
                  class="px-5 py-3.5 rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 text-xs font-mono transition-all flex items-center gap-1.5">
                 <span>Direct WhatsApp</span>
-                <span class="text-emerald-400">&nearr;</span>
+                <span class="text-white">&nearr;</span>
               </a>
             </div>
 
@@ -118,15 +122,15 @@ export interface EnrichedBundle {
                 FEATURED BUNDLE &bull; GIFT-V101
               </span>
 
-              <!-- Bundle Visual Mockup -->
-              <div class="aspect-4/3 rounded-2xl bg-zinc-900 overflow-hidden relative border border-zinc-800 flex items-center justify-center group">
+              <!-- Bundle Visual Mockup with Image Motion -->
+              <div class="image-motion-card aspect-4/3 rounded-2xl bg-zinc-900 overflow-hidden relative border border-zinc-800 flex items-center justify-center group">
                 <img 
                   src="images/bw/hero_unique_6_corporate.jpg" 
                   alt="Welcome Onboard Corporate Swag Box" 
-                  class="w-full h-full object-cover grayscale contrast-115 group-hover:scale-105 transition-transform duration-500" />
+                  class="w-full h-full object-cover grayscale contrast-115 group-hover:scale-108 transition-transform duration-700 ease-out" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-5">
                   <div class="text-white space-y-1">
-                    <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 block font-bold">BEST SELLER ONBOARDING</span>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-300 block font-bold">BEST SELLER ONBOARDING</span>
                     <h3 class="font-extrabold text-lg sm:text-xl leading-tight font-display text-white">Welcome Onboard Pack</h3>
                   </div>
                 </div>
@@ -151,18 +155,20 @@ export interface EnrichedBundle {
                 </div>
               </div>
 
-              <!-- Quick CTA in card -->
+              <!-- Direct Quote Action in Card -->
               <div class="pt-3 flex items-center justify-between border-t border-zinc-800">
                 <div>
                   <span class="text-[10px] font-mono text-zinc-500 block uppercase">Turnkey Unit Cost</span>
                   <span class="text-base sm:text-lg font-black text-white font-mono">From ₹799 <small class="text-zinc-400 font-normal text-xs">/ kit</small></span>
                 </div>
-                <button 
-                  (click)="addFeaturedBundle()" 
-                  class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md active:scale-95 flex items-center gap-1.5">
-                  <span>Add To Bag</span>
-                  <span>+</span>
-                </button>
+                <a 
+                  [href]="getWhatsAppUrl(bundles[0])" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md active:scale-95 flex items-center gap-1.5">
+                  <span>Get Instant Quote</span>
+                  <span>&nearr;</span>
+                </a>
               </div>
 
             </div>
@@ -182,13 +188,15 @@ export interface EnrichedBundle {
         <!-- Section Header with Category Tabs -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-800/80 pb-6">
           <div class="space-y-2">
-            <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-widest block flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest block flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
               <span>READY-TO-SHIP OR FULLY CUSTOMIZED</span>
             </span>
-            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white font-display uppercase">
-              Curated Gift Packages
-            </h2>
+            <div class="overflow-hidden">
+              <h2 class="letter-reveal text-3xl sm:text-4xl font-black tracking-tight text-white font-display uppercase">
+                Curated Gift Packages
+              </h2>
+            </div>
             <p class="text-xs sm:text-sm text-zinc-400 max-w-xl">
               Turnkey corporate gifting suites. Add your company emblem, team member names, and brand color palette to every piece.
             </p>
@@ -198,75 +206,81 @@ export interface EnrichedBundle {
           <div class="flex flex-wrap items-center gap-1.5 font-mono">
             @for (tab of categories; track tab.key) {
               <button 
-                (click)="activeCategory.set(tab.key)"
+                (click)="activeCategory.set(tab.key)" 
+                type="button" 
                 [class.bg-white]="activeCategory() === tab.key"
                 [class.text-black]="activeCategory() === tab.key"
-                [class.font-bold]="activeCategory() === tab.key"
+                [class.border-white]="activeCategory() === tab.key"
                 [class.bg-zinc-900]="activeCategory() !== tab.key"
                 [class.text-zinc-400]="activeCategory() !== tab.key"
-                class="px-3.5 py-1.5 rounded-full text-xs transition-all border border-zinc-800 hover:border-zinc-600 cursor-pointer whitespace-nowrap">
+                [class.border-zinc-800]="activeCategory() !== tab.key"
+                class="px-3 py-1.5 rounded-full border text-xs font-bold transition-all cursor-pointer hover:border-zinc-500 hover:text-white">
                 {{ tab.label }}
               </button>
             }
           </div>
         </div>
 
-        <!-- Bundles Grid (3-Col Luxury Industrial Cards) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          @for (b of filteredBundles(); track b.code) {
-            <article class="bg-black rounded-3xl border border-zinc-800 overflow-hidden flex flex-col group hover:border-zinc-600 transition-all duration-300 shadow-xl">
+        <!-- 7-Card Grid with Monochrome Styling -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          @for (b of filteredBundles(); track b.code; let idx = $index) {
+            <article [class]="'theme-card-bw rounded-3xl bg-black border border-zinc-850 overflow-hidden flex flex-col justify-between group hover-lift shadow-xl transition-all duration-300 hover:border-zinc-500 scroll-reveal stagger-' + ((idx % 3) + 1)">
               
-              <!-- Card Top Visual / Header -->
-              <div class="relative h-56 bg-zinc-900 overflow-hidden">
+              <!-- Card Image Header -->
+              <div class="image-motion-card relative aspect-16/10 overflow-hidden bg-zinc-900 border-b border-zinc-850">
                 <img 
                   [src]="b.image" 
                   [alt]="b.name" 
-                  class="w-full h-full object-cover grayscale contrast-110 transition-transform duration-500 group-hover:scale-105" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                  loading="lazy" 
+                  decoding="async"
+                  class="w-full h-full object-cover grayscale contrast-115 group-hover:scale-108 transition-transform duration-700 ease-out" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
 
-                <!-- Floating Code & Category Badge -->
-                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                  <span class="px-2.5 py-1 rounded-full bg-black/90 backdrop-blur-md text-white text-[10px] font-mono font-bold tracking-wider uppercase border border-zinc-700 shadow-md">
-                    {{ b.code }}
+                <!-- Top Left Badge -->
+                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md text-[10px] font-mono text-zinc-300 border border-zinc-700/80 uppercase font-bold tracking-wider">
+                  {{ b.categoryBadge }}
+                </span>
+
+                <!-- Top Right Highlight Badge -->
+                @if (b.badge) {
+                  <span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white text-black text-[10px] font-mono font-black uppercase tracking-wider shadow-md">
+                    {{ b.badge }}
                   </span>
-                  @if (b.badge) {
-                    <span class="px-2.5 py-1 rounded-full bg-white text-black text-[10px] font-mono font-bold tracking-wider uppercase shadow-md border border-white">
-                      {{ b.badge }}
-                    </span>
-                  }
-                </div>
+                }
 
-                <!-- Bottom Header on visual -->
-                <div class="absolute bottom-3.5 left-4 right-4 text-white z-10">
-                  <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block font-semibold">{{ b.categoryBadge }}</span>
-                  <h3 class="text-xl font-bold font-display leading-tight truncate text-white">{{ b.name }}</h3>
-                </div>
+                <!-- Product Code on Bottom -->
+                <span class="absolute bottom-3 left-4 text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">
+                  {{ b.code }}
+                </span>
               </div>
 
-              <!-- Card Body -->
-              <div class="p-6 flex-1 flex flex-col justify-between space-y-6">
+              <!-- Card Content Body -->
+              <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5 bg-black">
                 
                 <div class="space-y-4">
-                  <!-- Tagline & Target -->
                   <div>
-                    <p class="text-xs font-bold text-white uppercase tracking-wide font-mono">{{ b.tagline }}</p>
-                    <p class="text-xs text-zinc-400 mt-1 leading-relaxed">{{ b.target }}</p>
+                    <h3 class="text-xl font-black text-white font-display tracking-tight uppercase group-hover:text-zinc-200 transition-colors">
+                      {{ b.name }}
+                    </h3>
+                    <p class="text-xs text-zinc-400 mt-1 font-mono">
+                      {{ b.tagline }}
+                    </p>
                   </div>
 
-                  <!-- Included Items Checklist -->
-                  <div class="space-y-2 pt-2 border-t border-zinc-800/80">
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block font-bold">Package Contents:</span>
-                    <ul class="space-y-2">
+                  <!-- Kit Contents Checklist -->
+                  <div class="space-y-1.5 pt-1">
+                    <span class="text-[10px] font-mono uppercase text-zinc-500 block font-bold">Includes in Every Kit:</span>
+                    <ul class="space-y-1.5 text-xs text-zinc-300">
                       @for (item of b.items; track item) {
-                        <li class="flex items-start gap-2 text-xs text-zinc-300">
-                          <span class="text-emerald-400 font-bold shrink-0 mt-0.5">&check;</span>
+                        <li class="flex items-start gap-2">
+                          <span class="text-white text-xs mt-0.5 shrink-0">&bull;</span>
                           <span class="leading-relaxed">{{ item }}</span>
                         </li>
                       }
                     </ul>
                   </div>
 
-                  <!-- Spec Metadata Pills -->
+                  <!-- Specs Breakdown -->
                   <div class="pt-3 border-t border-zinc-800/80 space-y-2 font-mono text-[11px]">
                     <div class="flex items-center justify-between text-zinc-400">
                       <span>Packaging:</span>
@@ -283,7 +297,7 @@ export interface EnrichedBundle {
                   </div>
                 </div>
 
-                <!-- Footer with Action Buttons -->
+                <!-- Footer with Action Buttons (Quote-Driven B2B Action) -->
                 <div class="pt-4 border-t border-zinc-800/80 space-y-3 font-mono">
                   <div class="flex items-center justify-between">
                     <div>
@@ -294,20 +308,20 @@ export interface EnrichedBundle {
                   </div>
 
                   <div class="grid grid-cols-2 gap-2">
-                    <button 
-                      (click)="addBundle(b)" 
-                      class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm active:scale-95">
-                      <span>Add To Bag</span>
-                      <span>+</span>
-                    </button>
-
                     <a 
                       [href]="getWhatsAppUrl(b)" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      class="bg-zinc-900 text-zinc-300 border border-zinc-700 hover:bg-zinc-800 hover:text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1 hover:border-zinc-500">
-                      <span>WhatsApp Quote</span>
+                      class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm active:scale-95">
+                      <span>Inquire Batch</span>
                       <span>&nearr;</span>
+                    </a>
+
+                    <a 
+                      routerLink="/customizer"
+                      class="bg-zinc-900 text-zinc-300 border border-zinc-700 hover:bg-zinc-800 hover:text-white py-2.5 px-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1 hover:border-zinc-500">
+                      <span>3D Preview</span>
+                      <span>&rarr;</span>
                     </a>
                   </div>
                 </div>
@@ -331,9 +345,11 @@ export interface EnrichedBundle {
           <span class="inline-block px-3.5 py-1.5 rounded-full bg-zinc-950 text-zinc-300 border border-zinc-800 text-xs font-mono uppercase tracking-widest shadow-xs">
             Interactive Assembly Line
           </span>
-          <h2 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight uppercase">
-            Build Your Custom Kit
-          </h2>
+          <div class="overflow-hidden">
+            <h2 class="letter-reveal text-3xl sm:text-5xl font-black text-white font-display tracking-tight uppercase">
+              Build Your Custom Kit
+            </h2>
+          </div>
           <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed font-mono">
             Select your base apparel blank, choose curated accessories, and configure presentation packaging. Instant live cost calculator and 1-click WhatsApp BOM submission.
           </p>
@@ -341,94 +357,113 @@ export interface EnrichedBundle {
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <!-- Configuration Options (8 cols) -->
-          <div class="lg:col-span-8 space-y-6">
+          <!-- Left Configuration Form (8 cols) -->
+          <div class="lg:col-span-8 space-y-8 font-mono">
             
-            <!-- Step 1: Base Apparel Blank -->
-            <div class="bg-zinc-950 rounded-3xl p-6 sm:p-7 border border-zinc-800 shadow-xl space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-full bg-white text-black text-xs font-mono font-bold flex items-center justify-center">1</span>
-                  <h3 class="font-bold text-base sm:text-lg text-white font-display uppercase">Select Base Garment</h3>
+            <!-- STEP 1: APPAREL BLANK -->
+            <div class="p-6 sm:p-7 rounded-3xl bg-zinc-950 border border-zinc-800 space-y-5">
+              <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-white text-black text-xs font-bold flex items-center justify-center font-display">1</span>
+                  <h3 class="text-base sm:text-lg font-black text-white uppercase font-display tracking-tight">Select Base Apparel</h3>
                 </div>
-                <span class="text-xs font-mono text-zinc-400">100% Bio-Washed Combed Cotton</span>
+                <span class="text-[10px] text-zinc-400 uppercase">Export Cotton &bull; Pick 1</span>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 @for (app of apparelOptions; track app.id) {
                   <button 
                     (click)="selectedApparel.set(app.id)"
+                    type="button" 
                     [class.border-white]="selectedApparel() === app.id"
                     [class.bg-zinc-900]="selectedApparel() === app.id"
                     [class.border-zinc-800]="selectedApparel() !== app.id"
-                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between">
-                    <div class="flex items-start justify-between">
-                      <span class="font-bold text-xs sm:text-sm text-white">{{ app.name }}</span>
-                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-950 text-zinc-400 border border-zinc-800">{{ app.gsm }}</span>
+                    [class.bg-black]="selectedApparel() !== app.id"
+                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between space-y-3 group">
+                    <div class="flex items-start justify-between gap-2">
+                      <div>
+                        <span class="font-bold text-sm text-white block font-display uppercase tracking-tight">{{ app.name }}</span>
+                        <span class="text-xs text-zinc-400 block mt-0.5">{{ app.gsm }}</span>
+                      </div>
+                      <span class="text-xs font-bold text-white shrink-0 font-mono">{{ app.priceEst }}</span>
                     </div>
-                    <span class="text-[11px] text-zinc-400 mt-1 font-mono">{{ app.desc }}</span>
-                    <span class="text-xs font-bold text-white mt-2 block font-mono">{{ app.priceEst }}</span>
+                    <p class="text-[11px] text-zinc-400 font-sans leading-relaxed">{{ app.desc }}</p>
+                    <div class="flex items-center justify-between pt-2 border-t border-zinc-900 text-[10px]">
+                      <span class="text-zinc-500">OEKO-TEX STD 100</span>
+                      <span [class.text-white]="selectedApparel() === app.id" [class.text-zinc-600]="selectedApparel() !== app.id" class="font-bold">
+                        {{ selectedApparel() === app.id ? 'SELECTED ✓' : 'SELECT' }}
+                      </span>
+                    </div>
                   </button>
                 }
               </div>
             </div>
 
-            <!-- Step 2: Drinkware & Desk Merchandise -->
-            <div class="bg-zinc-950 rounded-3xl p-6 sm:p-7 border border-zinc-800 shadow-xl space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-full bg-white text-black text-xs font-mono font-bold flex items-center justify-center">2</span>
-                  <h3 class="font-bold text-base sm:text-lg text-white font-display uppercase">Select Curated Accessories</h3>
+            <!-- STEP 2: ACCESSORIES -->
+            <div class="p-6 sm:p-7 rounded-3xl bg-zinc-950 border border-zinc-800 space-y-5">
+              <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-white text-black text-xs font-bold flex items-center justify-center font-display">2</span>
+                  <h3 class="text-base sm:text-lg font-black text-white uppercase font-display tracking-tight">Curate Merchandise Items</h3>
                 </div>
-                <span class="text-xs font-mono text-zinc-400">Select multiple items</span>
+                <span class="text-[10px] text-zinc-400 uppercase">Select Multiple &bull; Optional</span>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 @for (acc of accessoryOptions; track acc.id) {
                   <button 
                     (click)="toggleAccessory(acc.id)"
+                    type="button" 
                     [class.border-white]="isAccessorySelected(acc.id)"
                     [class.bg-zinc-900]="isAccessorySelected(acc.id)"
                     [class.border-zinc-800]="!isAccessorySelected(acc.id)"
-                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between">
+                    [class.bg-black]="!isAccessorySelected(acc.id)"
+                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between space-y-3">
                     <div>
-                      <div class="flex items-center justify-between mb-1">
-                        <span class="text-xl">{{ acc.icon }}</span>
-                        @if (isAccessorySelected(acc.id)) {
-                          <span class="w-4 h-4 rounded-full bg-emerald-400 text-black text-[9px] font-bold flex items-center justify-center">&check;</span>
-                        }
-                      </div>
+                      <div class="text-2xl mb-1.5">{{ acc.icon }}</div>
                       <span class="font-bold text-xs text-white block">{{ acc.name }}</span>
-                      <span class="text-[10px] text-zinc-400 block mt-0.5 font-mono">{{ acc.detail }}</span>
+                      <span class="text-[10px] text-zinc-400 font-sans block mt-1 leading-relaxed">{{ acc.detail }}</span>
                     </div>
-                    <span class="text-xs font-bold text-white mt-2 block font-mono">+₹{{ acc.price }}</span>
+                    <div class="flex items-center justify-between pt-2 border-t border-zinc-900 text-xs">
+                      <span class="font-bold text-white">+₹{{ acc.price }}</span>
+                      <span [class.text-white]="isAccessorySelected(acc.id)" [class.text-zinc-600]="!isAccessorySelected(acc.id)" class="text-[10px] font-bold">
+                        {{ isAccessorySelected(acc.id) ? 'ADDED ✓' : '+ ADD' }}
+                      </span>
+                    </div>
                   </button>
                 }
               </div>
             </div>
 
-            <!-- Step 3: Custom Packaging Box -->
-            <div class="bg-zinc-950 rounded-3xl p-6 sm:p-7 border border-zinc-800 shadow-xl space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-full bg-white text-black text-xs font-mono font-bold flex items-center justify-center">3</span>
-                  <h3 class="font-bold text-base sm:text-lg text-white font-display uppercase">Select Packaging Style</h3>
+            <!-- STEP 3: PACKAGING -->
+            <div class="p-6 sm:p-7 rounded-3xl bg-zinc-950 border border-zinc-800 space-y-5">
+              <div class="flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-white text-black text-xs font-bold flex items-center justify-center font-display">3</span>
+                  <h3 class="text-base sm:text-lg font-black text-white uppercase font-display tracking-tight">Presentation &amp; Packaging</h3>
                 </div>
-                <span class="text-xs font-mono text-zinc-400">Zero Plastic Options</span>
+                <span class="text-[10px] text-zinc-400 uppercase">Custom Sleeves Included</span>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 @for (pkg of packagingOptions; track pkg.id) {
                   <button 
                     (click)="selectedPackaging.set(pkg.id)"
+                    type="button" 
                     [class.border-white]="selectedPackaging() === pkg.id"
                     [class.bg-zinc-900]="selectedPackaging() === pkg.id"
                     [class.border-zinc-800]="selectedPackaging() !== pkg.id"
-                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between">
+                    [class.bg-black]="selectedPackaging() !== pkg.id"
+                    class="p-4 rounded-2xl border text-left transition-all cursor-pointer hover:border-zinc-600 flex flex-col justify-between space-y-3">
                     <div>
-                      <span class="text-xl block mb-1">{{ pkg.icon }}</span>
+                      <div class="text-2xl mb-1.5">{{ pkg.icon }}</div>
                       <span class="font-bold text-xs text-white block">{{ pkg.name }}</span>
-                      <span class="text-[10px] text-zinc-400 block mt-0.5 font-mono">{{ pkg.desc }}</span>
+                      <span class="text-[10px] text-zinc-400 font-sans block mt-1 leading-relaxed">{{ pkg.desc }}</span>
+                    </div>
+                    <div class="pt-2 border-t border-zinc-900 text-right">
+                      <span [class.text-white]="selectedPackaging() === pkg.id" [class.text-zinc-600]="selectedPackaging() !== pkg.id" class="text-[10px] font-bold">
+                        {{ selectedPackaging() === pkg.id ? 'SELECTED ✓' : 'SELECT' }}
+                      </span>
                     </div>
                   </button>
                 }
@@ -437,34 +472,37 @@ export interface EnrichedBundle {
 
           </div>
 
-          <!-- Configuration Summary & Instant BOM Order (4 cols sticky) -->
-          <div class="lg:col-span-4 sticky top-28 space-y-4 font-mono">
-            <div class="bg-zinc-950 rounded-3xl p-6 sm:p-7 border border-zinc-800 shadow-2xl space-y-6">
+          <!-- Right Real-Time Bill of Materials (BOM) Live Card (4 cols) -->
+          <div class="lg:col-span-4 sticky top-24">
+            <div class="p-6 sm:p-7 rounded-3xl bg-zinc-950 border border-zinc-800 shadow-2xl space-y-6 font-mono">
               
-              <div class="space-y-1 pb-4 border-b border-zinc-800">
-                <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">LIVE ESTIMATE BILL OF MATERIALS</span>
-                <h3 class="text-lg font-black text-white font-display uppercase">Kit Summary</h3>
+              <div class="space-y-1 border-b border-zinc-800 pb-4">
+                <span class="text-[10px] text-zinc-400 uppercase tracking-widest font-bold block">LIVE ESTIMATE &bull; 25-KIT BATCH</span>
+                <h4 class="text-xl font-black text-white font-display tracking-tight uppercase">BOM Summary</h4>
               </div>
 
-              <!-- Selected Items Manifest -->
+              <!-- Selected Items List -->
               <div class="space-y-3 text-xs">
                 <div>
                   <span class="text-zinc-500 uppercase text-[10px] block">Base Garment:</span>
-                  <div class="flex items-center justify-between text-zinc-300 font-bold mt-0.5">
-                    <span>{{ getSelectedApparelName() }}</span>
-                    <span class="text-white">{{ getSelectedApparelPrice() }}</span>
+                  <div class="flex items-center justify-between text-zinc-200 mt-0.5">
+                    <span class="truncate pr-2">{{ getSelectedApparelName() }}</span>
+                    <span class="text-white font-bold shrink-0">{{ getSelectedApparelPrice() }}</span>
                   </div>
                 </div>
 
                 <div class="pt-2 border-t border-zinc-900">
-                  <span class="text-zinc-500 uppercase text-[10px] block">Accessories ({{ selectedAccessories().length }}):</span>
+                  <span class="text-zinc-500 uppercase text-[10px] block">Selected Merch Items ({{ selectedAccessories().length }}):</span>
                   @if (selectedAccessories().length === 0) {
-                    <span class="text-zinc-500 text-[11px] italic">No accessories selected</span>
-                  }
-                  @for (id of selectedAccessories(); track id) {
-                    <div class="flex items-center justify-between text-zinc-300 mt-1">
-                      <span class="truncate pr-2">{{ getAccessoryName(id) }}</span>
-                      <span class="text-white shrink-0 font-bold">{{ getAccessoryPrice(id) }}</span>
+                    <span class="text-zinc-600 italic text-[11px] block mt-1">No additional items chosen</span>
+                  } @else {
+                    <div class="space-y-1.5 mt-1.5">
+                      @for (accId of selectedAccessories(); track accId) {
+                        <div class="flex items-center justify-between text-zinc-300 text-[11px]">
+                          <span class="truncate pr-2">&bull; {{ getAccessoryName(accId) }}</span>
+                          <span class="text-white shrink-0">{{ getAccessoryPrice(accId) }}</span>
+                        </div>
+                      }
                     </div>
                   }
                 </div>
@@ -489,21 +527,20 @@ export interface EnrichedBundle {
                 </span>
               </div>
 
-              <!-- Action CTAs -->
+              <!-- Direct B2B Quote Action CTAs (No Cart / Bag) -->
               <div class="space-y-2.5 pt-2">
-                <button 
-                  (click)="addCustomKitToBag()" 
-                  class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black w-full py-3.5 rounded-2xl text-xs uppercase tracking-wider transition-all cursor-pointer shadow-lg active:scale-95 flex items-center justify-center gap-2">
-                  <span>Add 25-Kit Batch to Bag</span>
-                  <span>+</span>
-                </button>
-
                 <a 
                   [href]="getCustomKitWhatsAppUrl()" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  class="w-full py-3 px-4 rounded-2xl border border-zinc-700 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
-                  <span>WhatsApp BOM to Factory &rarr;</span>
+                  class="btn-shimmer bg-white hover:bg-zinc-200 text-black font-black w-full py-3.5 px-4 rounded-2xl text-xs uppercase tracking-wider transition-all cursor-pointer shadow-lg active:scale-95 flex items-center justify-center gap-2">
+                  <span>Submit BOM Quote to Factory &nearr;</span>
+                </a>
+
+                <a 
+                  href="tel:9944107633" 
+                  class="w-full py-3 px-4 rounded-2xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                  <span>Call Gifting Desk: +91 99441 07633</span>
                 </a>
               </div>
 
@@ -526,10 +563,12 @@ export interface EnrichedBundle {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div class="text-center max-w-2xl mx-auto space-y-3">
-          <span class="text-xs font-mono text-white font-bold uppercase tracking-widest block">FACTORY EMBELLISHMENT SUITE</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-white font-display uppercase tracking-tight">
-            How We Brand Your Merchandise
-          </h2>
+          <span class="text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest block">FACTORY EMBELLISHMENT SUITE</span>
+          <div class="overflow-hidden">
+            <h2 class="letter-reveal text-3xl sm:text-4xl font-black text-white font-display uppercase tracking-tight">
+              How We Brand Your Merchandise
+            </h2>
+          </div>
           <p class="text-xs sm:text-sm text-zinc-400">
             Every product inside your kit is personalized with calibrated machinery for high durability and export-grade handfeel.
           </p>
@@ -537,7 +576,7 @@ export interface EnrichedBundle {
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
           
-          <div class="p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-600 transition-all shadow-md">
+          <div class="scroll-reveal stagger-1 p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-500 transition-all shadow-md hover-lift-sm">
             <div class="w-10 h-10 rounded-2xl bg-zinc-900 flex items-center justify-center text-lg border border-zinc-700">
               💎
             </div>
@@ -545,10 +584,10 @@ export interface EnrichedBundle {
             <p class="text-zinc-400 leading-relaxed font-sans text-xs">
               Premium polo shirts, heavyweight hoodies, and caps. Creates 1.5mm elevated tactile relief with velvety texture and stretch recovery.
             </p>
-            <span class="text-[10px] text-emerald-400 font-bold block uppercase">PREMIUM STREETWEAR GRADE</span>
+            <span class="text-[10px] text-zinc-300 font-bold block uppercase">PREMIUM STREETWEAR GRADE</span>
           </div>
 
-          <div class="p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-600 transition-all shadow-md">
+          <div class="scroll-reveal stagger-2 p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-500 transition-all shadow-md hover-lift-sm">
             <div class="w-10 h-10 rounded-2xl bg-zinc-900 flex items-center justify-center text-lg border border-zinc-700">
               ⚡
             </div>
@@ -556,10 +595,10 @@ export interface EnrichedBundle {
             <p class="text-zinc-400 leading-relaxed font-sans text-xs">
               Stainless steel tumblers, vacuum flasks, brass pens, and bamboo notebooks. Permanent metallic finish that never fades or peels.
             </p>
-            <span class="text-[10px] text-emerald-400 font-bold block uppercase">PERMANENT &bull; INDIVIDUAL NAMES</span>
+            <span class="text-[10px] text-zinc-300 font-bold block uppercase">PERMANENT &bull; INDIVIDUAL NAMES</span>
           </div>
 
-          <div class="p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-600 transition-all shadow-md">
+          <div class="scroll-reveal stagger-3 p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-500 transition-all shadow-md hover-lift-sm">
             <div class="w-10 h-10 rounded-2xl bg-zinc-900 flex items-center justify-center text-lg border border-zinc-700">
               🎨
             </div>
@@ -567,10 +606,10 @@ export interface EnrichedBundle {
             <p class="text-zinc-400 leading-relaxed font-sans text-xs">
               Photorealistic full-color prints with ultra-soft hand feel. Exceptional vibrancy on both light and dark cotton textiles.
             </p>
-            <span class="text-[10px] text-emerald-400 font-bold block uppercase">50+ WASH FASTNESS</span>
+            <span class="text-[10px] text-zinc-300 font-bold block uppercase">50+ WASH FASTNESS</span>
           </div>
 
-          <div class="p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-600 transition-all shadow-md">
+          <div class="scroll-reveal stagger-4 p-6 rounded-3xl bg-black border border-zinc-800 space-y-3 hover:border-zinc-500 transition-all shadow-md hover-lift-sm">
             <div class="w-10 h-10 rounded-2xl bg-zinc-900 flex items-center justify-center text-lg border border-zinc-700">
               🧵
             </div>
@@ -578,7 +617,7 @@ export interface EnrichedBundle {
             <p class="text-zinc-400 leading-relaxed font-sans text-xs">
               Cotton pique polos (220 GSM), baseball caps, and structured laptop bags. Multi-thread Japanese embroidery with crisp edge definition.
             </p>
-            <span class="text-[10px] text-emerald-400 font-bold block uppercase">HIGH-DENSITY EMBROIDERY</span>
+            <span class="text-[10px] text-zinc-300 font-bold block uppercase">HIGH-DENSITY EMBROIDERY</span>
           </div>
 
         </div>
@@ -587,44 +626,117 @@ export interface EnrichedBundle {
     </section>
 
     <!-- ========================================================================= -->
-    <!-- 5. CORPORATE GIFTING FAQ & PROTOTYPE ASSURANCE                             -->
+    <!-- 5. 4-STEP B2B ORDER WORKFLOW                                              -->
     <!-- ========================================================================= -->
-    <section class="py-16 sm:py-24 bg-black font-sans border-b border-zinc-900">
+    <section class="py-16 sm:py-20 bg-black font-sans border-b border-zinc-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="text-center space-y-2">
+          <span class="text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest block">ORDER WITH CONFIDENCE</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white font-display uppercase tracking-tight">
+            Seamless 4-Step Production Process
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-850 space-y-3">
+            <div class="text-xs font-black text-white font-display">01 / DISCOVERY</div>
+            <h4 class="text-sm font-bold text-white font-sans">Share Logo &amp; Quantities</h4>
+            <p class="text-zinc-400 font-sans leading-relaxed">
+              Submit your preferred bundle or custom BOM specification with your brand guideline book and vector logo files.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-850 space-y-3">
+            <div class="text-xs font-black text-white font-display">02 / PROOFING</div>
+            <h4 class="text-sm font-bold text-white font-sans">24h 3D Digital Proof</h4>
+            <p class="text-zinc-400 font-sans leading-relaxed">
+              Our pre-press design engineers render 360° photorealistic mockups with exact PANTONE color matches for your sign-off.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-850 space-y-3">
+            <div class="text-xs font-black text-white font-display">03 / FABRICATION</div>
+            <h4 class="text-sm font-bold text-white font-sans">Precision Production</h4>
+            <p class="text-zinc-400 font-sans leading-relaxed">
+              Textiles are knitted, dyed, and embellished in our certified factory hub. Merchandise is assembled in luxury keepsake boxes.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-850 space-y-3">
+            <div class="text-xs font-black text-white font-display">04 / DISPATCH</div>
+            <h4 class="text-sm font-bold text-white font-sans">Express Pan-India Logistics</h4>
+            <p class="text-zinc-400 font-sans leading-relaxed">
+              Bulk kits are palletized or individually drop-shipped directly to team members across India with active live tracking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 6. CORPORATE GIFTING FAQ & PROTOTYPE ASSURANCE                             -->
+    <!-- ========================================================================= -->
+    <section class="py-16 sm:py-24 bg-zinc-950 font-sans border-b border-zinc-900">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div class="text-center space-y-3">
           <span class="text-xs font-mono text-zinc-400 font-bold uppercase tracking-widest block">FREQUENTLY ASKED QUESTIONS</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-white font-display tracking-tight uppercase">
-            Corporate Gifting &amp; Bulk Orders
-          </h2>
+          <div class="overflow-hidden">
+            <h2 class="letter-reveal text-3xl sm:text-4xl font-black text-white font-display tracking-tight uppercase">
+              Corporate Gifting &amp; Bulk Orders
+            </h2>
+          </div>
         </div>
 
-        <div class="space-y-4">
-          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 shadow-xs space-y-2">
-            <h4 class="font-bold text-base text-white font-display">
-              Can we personalize each kit with individual employee names?
+        <div class="space-y-3.5">
+          @for (faq of faqs; track faq.question; let idx = $index) {
+            <div class="rounded-2xl bg-black border border-zinc-850 overflow-hidden transition-all duration-300 hover:border-zinc-700 shadow-md">
+              <button 
+                (click)="toggleFaq(idx)"
+                type="button" 
+                class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer group">
+                <h4 class="font-bold text-sm sm:text-base text-white font-display group-hover:text-zinc-200 transition-colors">
+                  {{ faq.question }}
+                </h4>
+                <div class="w-7 h-7 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 group-hover:text-white transition-all shrink-0">
+                  <span class="text-sm font-mono font-bold transition-transform duration-300" [class.rotate-45]="openFaqIndex() === idx">
+                    +
+                  </span>
+                </div>
+              </button>
+
+              @if (openFaqIndex() === idx) {
+                <div class="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans border-t border-zinc-900/80 animate-fadeIn">
+                  {{ faq.answer }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Technical Assistance Support Box at bottom of FAQ -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-black border border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div class="space-y-1 text-center sm:text-left">
+            <h4 class="text-base font-bold text-white uppercase tracking-tight">
+              Ready to create your enterprise gift box?
             </h4>
-            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Yes. For executive desk packs, water bottles, and metal pens, our fiber laser engraving setup allows 1-to-1 individual recipient names alongside your corporate company emblem at a nominal per-unit personalization fee.
+            <p class="text-xs text-zinc-400">
+              Speak directly with our B2B merchandise engineers for sample packs and custom GST invoicing.
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 shadow-xs space-y-2">
-            <h4 class="font-bold text-base text-white font-display">
-              What is the turnaround time for bulk gift boxes?
-            </h4>
-            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Standard pre-curated packages ship within 3 to 5 business days after digital mockup sign-off. For custom-designed packaging sleeves or bespoke color match orders, dispatch timeline is 7 to 10 business days with pan-India express logistics.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 shadow-xs space-y-2">
-            <h4 class="font-bold text-base text-white font-display">
-              Can we order a physical sample box before approving the whole batch?
-            </h4>
-            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Absolutely. We provide physical pre-production sample kits and fabric swatch packs for verified corporate buyers. Contact our merchandising desk on WhatsApp (+91 99441 07633) to request a prototype kit with your logo.
-            </p>
+          <div class="flex items-center gap-3 shrink-0">
+            <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples,%20I%20want%20to%20order%20corporate%20gift%20kits." 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn-shimmer hover-lift-sm px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-mono font-black uppercase transition-all duration-300 flex items-center gap-2 shadow-bw">
+              <span>WhatsApp Merchandiser</span>
+              <span class="text-xs">&nearr;</span>
+            </a>
+            <a href="tel:9944107633" 
+               class="hover-lift-sm px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono font-bold uppercase border border-zinc-800 transition-all">
+              +91 99441 07633
+            </a>
           </div>
         </div>
 
@@ -633,9 +745,12 @@ export interface EnrichedBundle {
   `
 })
 export class GiftKitsComponent {
-  cart = inject(CartService);
-
   activeCategory = signal<'all' | 'onboarding' | 'executive' | 'active' | 'eco' | 'events'>('all');
+  openFaqIndex = signal<number | null>(0);
+
+  toggleFaq(index: number): void {
+    this.openFaqIndex.update(current => current === index ? null : index);
+  }
 
   categories: { key: 'all' | 'onboarding' | 'executive' | 'active' | 'eco' | 'events'; label: string }[] = [
     { key: 'all', label: 'All Bundles (7)' },
@@ -644,6 +759,29 @@ export class GiftKitsComponent {
     { key: 'active', label: 'Active & Sports (1)' },
     { key: 'eco', label: 'Sustainable Eco (1)' },
     { key: 'events', label: 'Events & Expo (1)' },
+  ];
+
+  faqs: FaqItem[] = [
+    {
+      question: 'Can we personalize each kit with individual employee names?',
+      answer: 'Yes. For executive desk packs, water bottles, and metal pens, our fiber laser engraving setup allows 1-to-1 individual recipient names alongside your corporate company emblem at a nominal per-unit personalization fee.'
+    },
+    {
+      question: 'What is the turnaround time for bulk gift boxes?',
+      answer: 'Standard pre-curated packages ship within 3 to 5 business days after digital mockup sign-off. For custom-designed packaging sleeves or bespoke color match orders, dispatch timeline is 7 to 10 business days with pan-India express logistics.'
+    },
+    {
+      question: 'Can we order a physical sample box before approving the whole batch?',
+      answer: 'Absolutely. We provide physical pre-production sample kits and fabric swatch packs for verified corporate buyers. Contact our merchandising desk on WhatsApp (+91 99441 07633) to request a prototype kit with your logo.'
+    },
+    {
+      question: 'Do you support multi-location individual employee home drop-shipping?',
+      answer: 'Yes. For distributed and remote-first teams across India, you can provide an address CSV roster. We individually pack, bubble-wrap, and dispatch directly to each employee with automated SMS/WhatsApp tracking.'
+    },
+    {
+      question: 'Is GST tax invoicing provided for corporate accounting?',
+      answer: 'Yes. Every corporate order is issued with a complete 18% or 12% GST-compliant tax invoice showing your company name and GSTIN for full input tax credit (ITC) reconciliation.'
+    }
   ];
 
   // Enriched Bundles using actual valid high-resolution images from the project
@@ -682,9 +820,9 @@ export class GiftKitsComponent {
         '1× Hardbound Leatherette A5 Ruled Journal',
         '1× Magnetic Luxury Keepsake Box'
       ],
-      moq: 'Min 15 Kits',
-      estimatedPrice: '₹1,299 / kit',
-      turnaround: '4–6 Days',
+      moq: 'Min 25 Kits',
+      estimatedPrice: '₹1,249 / kit',
+      turnaround: '3–5 Days',
       boxType: 'Magnetic Rigid Luxury Box',
       branding: 'Fiber Laser Engraving + Foil Stamping',
       badge: 'Premium VIP',
@@ -692,19 +830,19 @@ export class GiftKitsComponent {
     },
     {
       code: 'GIFT-V103',
-      name: 'Active Lifestyle Set',
-      tagline: 'Fitness, Team Marathons & Wellness Drives',
+      name: 'Fitness & Marathon Pack',
+      tagline: 'Health Drives & Sports Day Recognition',
       category: 'active',
       categoryBadge: 'Active & Sports',
-      target: 'Annual corporate sports days, wellness weeks & marathon runners',
+      target: 'Company sports tournaments, annual marathons & wellness drives',
       items: [
-        '1× Quick-Dry Sports T-Shirt (160 GSM Dot Knit Wicking)',
+        '1× Performance Activewear Tee (160 GSM Quick-Dry Dot-Knit)',
         '1× Water-Resistant Sports Duffle Gym Bag',
-        '1× Matte Aluminum Water Bottle (750ml)',
-        '1× Soft-Touch Rubberized Gel Grip Pen'
+        '1× Stainless Steel Sports Water Flask with Carabiner Clip',
+        '1× Quick-Dry Sports Sweat Wristband'
       ],
       moq: 'Min 25 Kits',
-      estimatedPrice: '₹1,149 / kit',
+      estimatedPrice: '₹949 / kit',
       turnaround: '4–6 Days',
       boxType: 'Water-Resistant Drawstring Kit Bag',
       branding: 'Breathable Sublimation + Laser Marking',
@@ -712,20 +850,20 @@ export class GiftKitsComponent {
     },
     {
       code: 'GIFT-V104',
-      name: 'Eco-Friendly Green Pack',
-      tagline: '100% Biodegradable & Sustainable Gifting',
+      name: 'Sustainable Eco Gift Set',
+      tagline: 'Zero-Plastic & Earth-Positive Corporate Gifting',
       category: 'eco',
-      categoryBadge: 'Sustainable & Green',
-      target: 'ESG milestones, eco summits & environmentally conscious teams',
+      categoryBadge: 'Sustainable Eco',
+      target: 'ESG initiatives, sustainability summits & eco-friendly brands',
       items: [
-        '1× Natural Bamboo Eco Stylus Twist Pen',
         '1× Heavyweight Organic Cotton Canvas Tote Bag',
-        '1× Eco Wheat Straw Travel Coffee Mug (400ml)',
-        '1× 100% Recycled Kraft Paper Wire-O Notebook'
+        '1× Recycled Cork & Bamboo Bound A5 Ruled Diary',
+        '1× Bamboo Wood Push-Action Ballpoint Pen',
+        '1× Borosilicate Glass Infuser Bottle with Bamboo Cap'
       ],
       moq: 'Min 25 Kits',
-      estimatedPrice: '₹849 / kit',
-      turnaround: '3–5 Days',
+      estimatedPrice: '₹899 / kit',
+      turnaround: '4–6 Days',
       boxType: 'Recycled Kraft Carton + Soy Ink Print',
       branding: 'Eco Water-Based Inks + Laser Etch',
       badge: 'Eco Choice',
@@ -733,18 +871,19 @@ export class GiftKitsComponent {
     },
     {
       code: 'GIFT-V105',
-      name: 'Corporate Uniform Bundle',
-      tagline: 'Sharp Retail Look for Sales & Field Executives',
+      name: 'Corporate Uniform & Polo Kit',
+      tagline: 'Refined Workwear for Tech Teams & Support Staff',
       category: 'onboarding',
-      categoryBadge: 'Field & Retail Teams',
-      target: 'Sales summits, brand reps & retail operations uniform kits',
+      categoryBadge: 'Apparel Suite',
+      target: 'Engineering teams, retail branch staff & client-facing crew',
       items: [
-        '2× Premium Combed Cotton Pique Polos (220 GSM)',
-        '1× Structured Water-Resistant Laptop Backpack',
-        '1× Carbon Fiber Weave Executive Pen'
+        '2× Premium Combed Cotton Pique Polos (220 GSM Bio-Washed)',
+        '1× Water-Resistant Padded 15.6" Laptop Sleeve with Logo',
+        '1× Metal Keychain with Custom 3D Laser Relief',
+        '1× Custom Branded Heavy Cardboard Presentation Box'
       ],
-      moq: 'Min 20 Kits',
-      estimatedPrice: '₹1,599 / kit',
+      moq: 'Min 25 Kits',
+      estimatedPrice: '₹1,099 / kit',
       turnaround: '5–7 Days',
       boxType: 'Reinforced Shipping Outer Box',
       branding: 'High-Density 3D Silicone + Tajima Embroidery',
@@ -763,8 +902,8 @@ export class GiftKitsComponent {
         '1× Stainless Steel Cartridge Fountain Pen',
         '1× Weekend Travel Duffle with Leather Trim'
       ],
-      moq: 'Min 10 Kits',
-      estimatedPrice: '₹1,999 / kit',
+      moq: 'Min 25 Kits',
+      estimatedPrice: '₹2,199 / kit',
       turnaround: '5–7 Days',
       boxType: 'Custom Velvet-Lined Rigid Box',
       branding: 'Gold Foil Stamping + 3D Silicone Relief',
@@ -773,10 +912,10 @@ export class GiftKitsComponent {
     },
     {
       code: 'GIFT-V107',
-      name: 'Event & Expo Giveaway Pack',
-      tagline: 'High Volume Trade Show & Conference Swag',
+      name: 'Trade Fair & Expo Pack',
+      tagline: 'High-Volume Swag for Booth Visitors & Press',
       category: 'events',
-      categoryBadge: 'Events & Trade Shows',
+      categoryBadge: 'Events & Expo',
       target: 'Tech expos, industry trade fairs, product launches & press events',
       items: [
         '1× Lightweight Promotional Event T-Shirt (160 GSM Cotton)',
@@ -879,36 +1018,6 @@ export class GiftKitsComponent {
     if (this.selectedPackaging() === 'tote_pack') pkgCost = 90;
 
     return base + accTotal + pkgCost;
-  }
-
-  addBundle(bundle: EnrichedBundle): void {
-    this.cart.addToCart({
-      id: bundle.code,
-      name: bundle.name,
-      qty: 1,
-      price: 0,
-      detail: bundle.items.join(' · ') + ' — ' + bundle.estimatedPrice
-    });
-  }
-
-  addFeaturedBundle(): void {
-    const featured = this.bundles[0];
-    this.addBundle(featured);
-  }
-
-  addCustomKitToBag(): void {
-    const apparel = this.getSelectedApparelName();
-    const accessories = this.selectedAccessories().map(id => this.getAccessoryName(id)).join(', ');
-    const packaging = this.getSelectedPackagingName();
-    const total = this.calculateEstimatedKitTotal();
-
-    this.cart.addToCart({
-      id: 'CUSTOM-KIT-' + Date.now().toString().slice(-4),
-      name: `Custom Curated Kit (${apparel})`,
-      qty: 25,
-      price: total,
-      detail: `Apparel: ${apparel} | Accessories: ${accessories || 'None'} | Packaging: ${packaging}`
-    });
   }
 
   getWhatsAppUrl(bundle: EnrichedBundle): string {
