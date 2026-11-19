@@ -60,7 +60,7 @@ export interface ProductOption {
           </div>
           <div class="p-3.5 rounded-2xl bg-zinc-950/90 border border-zinc-800/80 space-y-1">
             <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">Direct Factory Hotline</span>
-            <span class="text-sm sm:text-base font-black text-white font-mono block">+91 99441 07633</span>
+            <span class="text-sm sm:text-base font-black text-white font-mono block">+91 96299 86444</span>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@ export interface ProductOption {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
           <!-- Channel 1: WhatsApp Factory Desk -->
-          <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples%20Factory,%20I%20would%20like%20to%20request%20a%20production%20quote%20and%20sample%20pricing." 
+          <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples%20Factory,%20I%20would%20like%20to%20request%20a%20production%20quote%20and%20sample%20pricing." 
              target="_blank" 
              rel="noopener noreferrer"
              class="group p-5 rounded-2xl bg-black border border-zinc-800 hover:border-zinc-500 transition-all duration-300 flex items-start gap-4 hover-lift-sm">
@@ -86,12 +86,12 @@ export interface ProductOption {
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">Priority Channel</span>
               <h4 class="text-sm font-bold text-white group-hover:text-zinc-200 font-display">WhatsApp Factory Desk</h4>
-              <p class="text-xs text-zinc-400 font-mono">+91 99441 07633 / +91 96268 76200</p>
+              <p class="text-xs text-zinc-400 font-mono">+91 96299 86444</p>
             </div>
           </a>
 
           <!-- Channel 2: Official RFQ Email -->
-          <a href="mailto:support@brandpeoples.com?subject=Production%20Inquiry%20-%20Custom%20Apparel"
+          <a href="mailto:hello@brandpeoples.com?subject=Production%20Inquiry%20-%20Custom%20Apparel"
              class="group p-5 rounded-2xl bg-black border border-zinc-800 hover:border-zinc-500 transition-all duration-300 flex items-start gap-4 hover-lift-sm">
             <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-black transition">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,7 +101,7 @@ export interface ProductOption {
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">Artwork &amp; Tech Packs</span>
               <h4 class="text-sm font-bold text-white group-hover:text-zinc-200 font-display">Official Quotations Desk</h4>
-              <p class="text-xs text-zinc-400 font-mono">support&#64;brandpeoples.com</p>
+              <p class="text-xs text-zinc-400 font-mono">hello&#64;brandpeoples.com</p>
             </div>
           </a>
 
@@ -257,7 +257,7 @@ export interface ProductOption {
                     <input type="tel" 
                            [(ngModel)]="formData.phone" 
                            name="phone" 
-                           placeholder="+91 99441 07633" 
+                           placeholder="+91 96299 86444" 
                            required 
                            class="w-full px-4 py-3 rounded-xl bg-black border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-hidden focus:border-white transition font-mono" />
                   </div>
@@ -333,7 +333,7 @@ export interface ProductOption {
                   </div>
                   <div class="space-y-0.5">
                     <span class="text-zinc-500 uppercase text-[10px] tracking-wider block">Production Hotline:</span>
-                    <a href="tel:9944107633" class="text-white hover:underline block font-medium">+91 99441 07633, +91 96268 76200</a>
+                    <a href="tel:9629986444" class="text-white hover:underline block font-medium">+91 96299 86444</a>
                   </div>
                 </div>
 
@@ -345,7 +345,7 @@ export interface ProductOption {
                   </div>
                   <div class="space-y-0.5">
                     <span class="text-zinc-500 uppercase text-[10px] tracking-wider block">Direct Email:</span>
-                    <a href="mailto:support@brandpeoples.com" class="text-white hover:underline block font-medium">support&#64;brandpeoples.com</a>
+                    <a href="mailto:hello@brandpeoples.com" class="text-white hover:underline block font-medium">hello&#64;brandpeoples.com</a>
                   </div>
                 </div>
 
@@ -377,7 +377,7 @@ export interface ProductOption {
               </div>
 
               <div class="pt-2">
-                <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples,%20I%20would%20like%20to%20request%20a%20quote%20for%20custom%20apparel." 
+                <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples,%20I%20would%20like%20to%20request%20a%20quote%20for%20custom%20apparel." 
                    target="_blank" 
                    rel="noopener noreferrer"
                    class="btn-shimmer hover-lift-sm w-full py-3.5 rounded-xl bg-white text-black font-mono font-black text-xs uppercase flex items-center justify-center gap-2 hover:bg-zinc-200 transition-all duration-300 shadow-md">

@@ -83,7 +83,7 @@ export interface FaqItem {
                 <span>&rarr;</span>
               </a>
 
-              <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples%20Factory,%20I%20want%20to%20curate%20a%20custom%20gift%20box%20for%20our%20company." 
+              <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples%20Factory,%20I%20want%20to%20curate%20a%20custom%20gift%20box%20for%20our%20company." 
                  target="_blank" 
                  rel="noopener noreferrer"
                  class="px-5 py-3.5 rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 text-xs font-mono transition-all flex items-center gap-1.5">
@@ -538,9 +538,9 @@ export interface FaqItem {
                 </a>
 
                 <a 
-                  href="tel:9944107633" 
+                  href="tel:9629986444" 
                   class="w-full py-3 px-4 rounded-2xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
-                  <span>Call Gifting Desk: +91 99441 07633</span>
+                  <span>Call Gifting Desk: +91 96299 86444</span>
                 </a>
               </div>
 
@@ -726,16 +726,16 @@ export interface FaqItem {
           </div>
 
           <div class="flex items-center gap-3 shrink-0">
-            <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples,%20I%20want%20to%20order%20corporate%20gift%20kits." 
+            <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples,%20I%20want%20to%20order%20corporate%20gift%20kits." 
                target="_blank" 
                rel="noopener noreferrer"
                class="btn-shimmer hover-lift-sm px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-mono font-black uppercase transition-all duration-300 flex items-center gap-2 shadow-bw">
               <span>WhatsApp Merchandiser</span>
               <span class="text-xs">&nearr;</span>
             </a>
-            <a href="tel:9944107633" 
+            <a href="tel:9629986444" 
                class="hover-lift-sm px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono font-bold uppercase border border-zinc-800 transition-all">
-              +91 99441 07633
+              +91 96299 86444
             </a>
           </div>
         </div>
@@ -772,7 +772,7 @@ export class GiftKitsComponent {
     },
     {
       question: 'Can we order a physical sample box before approving the whole batch?',
-      answer: 'Absolutely. We provide physical pre-production sample kits and fabric swatch packs for verified corporate buyers. Contact our merchandising desk on WhatsApp (+91 99441 07633) to request a prototype kit with your logo.'
+      answer: 'Absolutely. We provide physical pre-production sample kits and fabric swatch packs for verified corporate buyers. Contact our merchandising desk on WhatsApp (+91 96299 86444) to request a prototype kit with your logo.'
     },
     {
       question: 'Do you support multi-location individual employee home drop-shipping?',
@@ -1024,7 +1024,7 @@ export class GiftKitsComponent {
     const text = encodeURIComponent(
       `Hello Brand Peoples Factory Team!\n\nI am interested in bulk ordering the *${bundle.name}* (${bundle.code}).\n\n• Target: ${bundle.target}\n• MOQ: ${bundle.moq}\n• Packaging: ${bundle.boxType}\n\nPlease share quantity discount tiers (25 / 100 / 500 pcs) and mock-up design process.`
     );
-    return `https://wa.me/919944107633?text=${text}`;
+    return `https://wa.me/919629986444?text=${text}`;
   }
 
   getCustomKitWhatsAppUrl(): string {
@@ -1036,6 +1036,6 @@ export class GiftKitsComponent {
     const text = encodeURIComponent(
       `Hello Brand Peoples Factory Team!\n\nI built a Custom Gift Kit on your website:\n• Base Apparel: ${apparel}\n• Accessories: ${accessories || 'None'}\n• Packaging: ${packaging}\n• Estimated Unit Rate: ₹${total}\n\nPlease advise on bulk ordering, logo mockup generation, and sample dispatch.`
     );
-    return `https://wa.me/919944107633?text=${text}`;
+    return `https://wa.me/919629986444?text=${text}`;
   }
 }

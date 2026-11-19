@@ -667,7 +667,7 @@ export interface CatalogItem {
                 <span class="btn-arrow">&rarr;</span>
               </a>
 
-              <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples,%20I%20would%20like%20to%20order%20samples%20or%20inquire%20about%20{{ selectedItemForSpec()!.name }}" 
+              <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples,%20I%20would%20like%20to%20order%20samples%20or%20inquire%20about%20{{ selectedItemForSpec()!.name }}" 
                  target="_blank" 
                  rel="noopener noreferrer"
                  class="px-6 py-3.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-mono font-bold text-xs uppercase border border-zinc-800 transition text-center">

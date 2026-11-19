@@ -921,7 +921,7 @@ export class CustomizerComponent implements OnInit, AfterViewInit, OnDestroy {
     const text = encodeURIComponent(
       `Hi Brand Peoples! I customized the 3D ${this.activeGarment().name} (${this.selectedColor()}) with ${this.selectedPrintMethod()} print: "${this.customText()}". Can you provide quotation?`
     );
-    return `https://wa.me/919944107633?text=${text}`;
+    return `https://wa.me/919629986444?text=${text}`;
   });
 
   ngOnInit(): void {

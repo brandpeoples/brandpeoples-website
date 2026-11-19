@@ -708,16 +708,16 @@ export const HERO_SLIDES: HeroSlide[] = [
           </div>
 
           <div class="flex items-center gap-3 shrink-0">
-            <a href="https://wa.me/919944107633?text=Hi%20Brand%20Peoples,%20I%20have%20a%20technical%20question%20about%20printing%20and%20MOQ." 
+            <a href="https://wa.me/919629986444?text=Hi%20Brand%20Peoples,%20I%20have%20a%20technical%20question%20about%20printing%20and%20MOQ." 
                target="_blank" 
                rel="noopener noreferrer"
                class="hover-lift-sm px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-mono font-black uppercase transition-all duration-300 flex items-center gap-2 shadow-bw">
               <span>WhatsApp Engineer</span>
               <span class="btn-arrow">&rarr;</span>
             </a>
-            <a href="tel:9944107633" 
+            <a href="tel:9629986444" 
                class="hover-lift-sm px-5 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-mono font-bold uppercase border border-zinc-800 transition-all">
-              +91 99441 07633
+              +91 96299 86444
             </a>
           </div>
         </div>

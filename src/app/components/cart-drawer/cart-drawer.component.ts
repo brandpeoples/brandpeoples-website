@@ -55,6 +55,6 @@ export class CartDrawerComponent {
     const count = this.cart.cartCount();
     const itemsList = this.cart.items().map(it => `${it.qty}x ${it.name} (${it.detail || ''})`).join('%0A- ');
     const msg = `Hi Brand Peoples,%0A%0AI would like to place an order from your website:%0A- ${itemsList}%0A%0AEstimated Total: ₹${total}%0AItems: ${count}`;
-    window.open(`https://wa.me/919944107633?text=${msg}`, '_blank');
+    window.open(`https://wa.me/919629986444?text=${msg}`, '_blank');
   }
 }

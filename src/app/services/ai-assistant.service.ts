@@ -15,9 +15,9 @@ Your purpose is to assist clothing brands, fashion creators, corporate merchandi
 About Brand Peoples:
 - Company: Brand Peoples - Premier Custom Apparel, Merchandise & Printing Platform
 - Location: Anupparpalayam Pudur, Tamil Nadu 641652, India
-- Phone: +91 9944107633, +91 9626876200
-- WhatsApp: https://wa.me/919944107633
-- Email: support@brandpeoples.com
+- Phone: +91 9629986444
+- WhatsApp: https://wa.me/919629986444
+- Email: hello@brandpeoples.com
 - Capacity: 100,000+ custom pieces daily capacity with automated DTF and 3D silicone lines
 - Quality: 100% Bio-Washed Combed Cotton, OEKO-TEX Standard 100 Certified Inks, 50+ wash durability
 
@@ -217,18 +217,18 @@ export class AiAssistantService {
         `• **Custom Tees**: Starting from ₹299 (bulk) / ₹499 (single custom piece).\n` +
         `• **Custom Heavyweight Hoodies**: Starting from ₹799 (bulk) / ₹999 (single custom piece).\n` +
         `• **Bulk Corporate & Merch Orders**: Substantial discounts on orders of 25+ and 100+ units.\n\n` +
-        `💬 WhatsApp our factory merchandising team directly at [+91 9944107633](https://wa.me/919944107633) for an instant wholesale quote!`;
+        `💬 WhatsApp our factory merchandising team directly at [+91 9629986444](https://wa.me/919629986444) for an instant wholesale quote!`;
     } else if (q.includes('sample') || q.includes('swatch')) {
       reply = `We provide **Free Swatch & Sample Packs** for verified brands, buying houses, and corporate buyers:\n\n` +
         `• Includes real fabric strike-offs (180, 240 & 380 GSM).\n` +
         `• Real 3D silicone and DTF print samples for wash testing.\n` +
         `• Heat-press application instructions and shore hardness cards.\n\n` +
-        `Message us on WhatsApp at [+91 9944107633](https://wa.me/919944107633) to claim your swatch kit!`;
+        `Message us on WhatsApp at [+91 9629986444](https://wa.me/919629986444) to claim your swatch kit!`;
     } else if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('address')) {
       reply = `Connect with Brand Peoples directly:\n\n` +
         `• **Factory Hub**: Anupparpalayam Pudur, Tamil Nadu 641652, India\n` +
-        `• **WhatsApp / Direct Line**: [+91 9944107633](https://wa.me/919944107633) / [+91 9626876200](tel:9626876200)\n` +
-        `• **Email**: [support@brandpeoples.com](mailto:support@brandpeoples.com)\n` +
+        `• **WhatsApp / Direct Line**: [+91 9629986444](https://wa.me/919629986444)\n` +
+        `• **Email**: [hello@brandpeoples.com](mailto:hello@brandpeoples.com)\n` +
         `• **Support Hours**: 24/7 online support with live chat.`;
     } else {
       reply = `Welcome to **Brand Peoples**! 🌟\n\n` +
