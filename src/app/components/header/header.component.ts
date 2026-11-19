@@ -260,6 +260,13 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
               </div>
 
               <span class="text-zinc-700">&bull;</span>
+
+              <div class="flex items-center gap-2 whitespace-nowrap">
+                <span class="text-zinc-400 uppercase tracking-wide">TIRUPPUR HUB:</span>
+                <span class="text-white font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
+              </div>
+
+              <span class="text-zinc-700">&bull;</span>
             </div>
 
             <!-- MARQUEE SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
@@ -290,6 +297,13 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
               <div class="flex items-center gap-2 whitespace-nowrap">
                 <span class="text-zinc-400 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
                 <span class="text-white font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
+              </div>
+
+              <span class="text-zinc-700">&bull;</span>
+
+              <div class="flex items-center gap-2 whitespace-nowrap">
+                <span class="text-zinc-400 uppercase tracking-wide">TIRUPPUR HUB:</span>
+                <span class="text-white font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
               </div>
 
               <span class="text-zinc-700">&bull;</span>

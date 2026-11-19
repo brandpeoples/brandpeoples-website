@@ -48,11 +48,11 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
     image: 'images/bw/hero_unique_identity_brand.jpg',
-    badge: '3D ON-DEMAND APPAREL STUDIO • CUSTOM MERCHANDISE',
+    badge: 'TIRUPPUR FACTORY HUB • COIMBATORE • CUSTOM APPAREL & MERCH',
     headlineLine1: 'DESIGN YOUR',
     headlineLine2: 'IDENTITY.',
     headlineHighlight: 'WEAR YOUR BRAND.',
-    description: "India's premier on-demand custom merchandise ecosystem. High-density 3D silicone heat transfers, 2400 DPI DTF digital prints, and 240 GSM bio-washed combed cotton. Preview in real-time WebGL 3D before production.",
+    description: "South India's premier custom apparel manufacturer in Tiruppur & Coimbatore, Tamil Nadu. High-density 3D silicone heat transfers, 2400 DPI DTF digital prints, and 240 GSM bio-washed combed cotton. Preview in real-time WebGL 3D before production.",
     primaryCtaText: 'Launch 3D Customizer',
     primaryCtaLink: '/customizer',
     primaryCtaBadge: '360°',
@@ -983,6 +983,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       question: 'How accurately does the WebGL 3D customizer reflect the physical garment?',
       answer: 'Our 3D engine is calibrated against actual factory blanks with photorealistic PBR (Physically-Based Rendering) roughness textures, authentic GSM weight drape, and precise printable dimension bounding boxes. What you inspect in 3D aligns 1:1 with real physical screen and heat-press placements.',
       bulletPoints: ['1:1 dimensional print bounding boxes', 'Calibrated PBR fabric roughness & drape', 'Real-time 360° rotation & zoom inspection', 'Front, back, sleeve & tag placement projection']
+    },
+    {
+      id: 6,
+      category: 'TIRUPPUR FACTORY & REGIONAL DISPATCH',
+      question: 'Where is your factory located, and do you deliver across Tiruppur, Coimbatore, and Tamil Nadu?',
+      answer: 'Our 40,000 sq. ft integrated apparel manufacturing facility and design studio are headquartered in Anupparpalayam Pudur, Tiruppur, Tamil Nadu. We supply high-density 3D silicone prints, custom oversized t-shirts, DTF gang sheets, and corporate welcome packages across Coimbatore, Chennai, Madurai, and all across Tamil Nadu with same-day sample courier and express freight. Direct studio visits and live fabric audits are welcome.',
+      bulletPoints: ['Direct factory manufacturing in Tiruppur textile hub', 'Rapid 24-hour courier delivery to Coimbatore & Tamil Nadu', 'Zero brokers: 100% factory-direct wholesale pricing', 'Physical studio visits & live fabric inspections welcome']
     }
   ];
 }

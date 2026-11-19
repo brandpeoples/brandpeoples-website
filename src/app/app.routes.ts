@@ -8,16 +8,16 @@ import { QualityComponent } from './pages/quality/quality.component';
 import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'brandpeoples — Custom Merchandise & Brand Kits' },
-  { path: 'catalog', component: CatalogComponent, title: 'Catalogs | brandpeoples' },
+  { path: '', component: HomeComponent, title: 'Brand Peoples | Custom T-Shirt Manufacturer & Apparel Printing | Tiruppur & Coimbatore' },
+  { path: 'catalog', component: CatalogComponent, title: 'Blank Apparel Catalog & Bulk Wholesale | Tiruppur Factory | brandpeoples' },
   { path: 'catalogs', redirectTo: 'catalog', pathMatch: 'full' },
   { path: 'products', redirectTo: 'catalog', pathMatch: 'full' },
-  { path: 'customize', component: CustomizerComponent, title: 'Product Studio & 3D Customizer | brandpeoples' },
+  { path: 'customize', component: CustomizerComponent, title: '3D T-Shirt Studio & Garment Customizer | brandpeoples' },
   { path: 'customizer', redirectTo: 'customize', pathMatch: 'full' },
-  { path: 'gift-kits', component: GiftKitsComponent, title: 'Gift Kits & Welcome Packages | brandpeoples' },
+  { path: 'gift-kits', component: GiftKitsComponent, title: 'Corporate Gift Kits & Onboarding Packs | Coimbatore & Tamil Nadu | brandpeoples' },
   { path: 'projects', redirectTo: 'gift-kits', pathMatch: 'full' },
-  { path: 'capabilities', component: CapabilitiesComponent, title: 'Manufacturing Capabilities | brandpeoples' },
-  { path: 'quality', component: QualityComponent, title: 'Quality Standards & Fabric Testing | brandpeoples' },
-  { path: 'contact-us', component: ContactComponent, title: 'Contact & Factory Bulk Inquiries | brandpeoples' },
+  { path: 'capabilities', component: CapabilitiesComponent, title: '3D Silicone & 2400 DPI DTF Printing Hub | Tiruppur Manufacturing | brandpeoples' },
+  { path: 'quality', component: QualityComponent, title: 'Bio-Washed Combed Cotton Quality & Lab Testing | brandpeoples' },
+  { path: 'contact-us', component: ContactComponent, title: 'Factory Direct Quotes & Factory Visits | Tiruppur Desk | brandpeoples' },
   { path: '**', redirectTo: '' }
 ];
