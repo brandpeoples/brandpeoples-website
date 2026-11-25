@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
   template: `
-    <footer class="footer-global bg-black text-zinc-400 pt-16 pb-12 relative overflow-hidden border-t border-zinc-900 font-sans">
+    <footer class="footer-global bg-[#0A0B0E] text-zinc-400 pt-16 pb-12 relative overflow-hidden border-t border-white/[0.08] font-sans">
       <!-- Ambient subtle background lighting -->
       <div class="footer-ambient-glow absolute top-0 right-1/4 w-96 h-96 bg-white/[0.03] blur-[140px] pointer-events-none rounded-full"></div>
       <div class="footer-ambient-glow absolute bottom-0 left-10 w-96 h-96 bg-zinc-800/10 blur-[140px] pointer-events-none rounded-full"></div>
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
         <!-- ========================================================================= -->
         <!-- 1. TOP QUICK DIRECTORY JUMP BAR (FAST HORIZONTAL PILL NAVIGATION)        -->
         <!-- ========================================================================= -->
-        <div class="p-4 sm:p-5 rounded-3xl bg-zinc-950 border border-zinc-800/90 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="p-4 sm:p-5 rounded-3xl card-luxury border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="flex items-center gap-2.5">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">Fast Navigation Directory</span>
@@ -56,7 +56,7 @@ import { FormsModule } from '@angular/forms';
         <!-- ========================================================================= -->
         <!-- 2. MAIN RESPONSIVE MULTI-COLUMN NAVIGATION GRID                           -->
         <!-- ========================================================================= -->
-        <div class="footer-nav-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 pb-8 border-b border-zinc-900">
+        <div class="footer-nav-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 pb-8 border-b border-white/[0.08]">
           
           <!-- Column 1: Company Profile (Spans 2 cols on mobile and desktop) -->
           <div class="footer-nav-col col-span-2 space-y-4">
@@ -285,10 +285,10 @@ import { FormsModule } from '@angular/forms';
         <!-- ========================================================================= -->
         <!-- 3. SCULPTED LUXURY UTILITY BAR & ACCREDITATION CONSOLE                    -->
         <!-- ========================================================================= -->
-        <div class="rounded-3xl bg-zinc-950/90 border border-zinc-800/80 p-5 sm:p-6 backdrop-blur-md shadow-2xl space-y-5">
+        <div class="rounded-3xl card-luxury border border-white/10 p-5 sm:p-6 backdrop-blur-md shadow-2xl space-y-5">
           
           <!-- Top Row: Full Route Navigation Suite & Back to Top -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-900">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-mono">
               <span class="text-[10px] text-zinc-500 uppercase tracking-widest mr-1 hidden sm:inline">Directory:</span>
               <a routerLink="/" class="px-2.5 py-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">Home</a>

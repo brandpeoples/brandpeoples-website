@@ -10,7 +10,7 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     <!-- ========================================================================= -->
     <!-- 1. PURE BLACK & WHITE MINIMALIST NAVIGATION BAR                           -->
     <!-- ========================================================================= -->
-    <header class="bg-black sticky top-0 z-40 border-b border-zinc-900 transition-all duration-200">
+    <header class="bg-[#0A0B0E]/85 backdrop-blur-xl sticky top-0 z-40 border-b border-white/[0.08] transition-all duration-200">
       <div class="max-w-[1600px] mx-auto px-3 sm:px-5 lg:px-6">
         <div class="flex items-center justify-between h-16 sm:h-[68px] gap-2 lg:gap-3 xl:gap-4">
           
@@ -159,40 +159,40 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
       <!-- Mobile Navigation Drawer -->
       <div *ngIf="isMobileMenuOpen()" class="lg:hidden border-t border-zinc-800 bg-black px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
         <a routerLink="/" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            [routerLinkActiveOptions]="{exact: true}"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Home
         </a>
         <a routerLink="/customizer" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition flex items-center justify-between">
           <span>3D Customizer Studio</span>
           <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-white text-black">3D LIVE</span>
         </a>
         <a routerLink="/catalog" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Catalogs
         </a>
         <a routerLink="/capabilities" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Printing Technology
         </a>
         <a routerLink="/quality" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Quality Standards
         </a>
         <a routerLink="/gift-kits" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition flex items-center justify-between">
           <span>Corporate Gift Kits</span>
           <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-zinc-800 text-zinc-300 border border-zinc-700">7 PACKS</span>
         </a>
         <a routerLink="/contact-us" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-zinc-900 text-white font-bold"
+           routerLinkActive="bg-white/10 text-white font-bold"
            class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
           Contact &amp; Quotes
         </a>
@@ -218,7 +218,7 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
       <div class="max-w-[1600px] mx-auto flex items-center">
         
         <!-- Pinned Static Label on Left -->
-        <div class="shrink-0 bg-black z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-zinc-900 shadow-[4px_0_12px_rgba(0,0,0,0.95)]">
+        <div class="shrink-0 bg-[#0E1015] z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-white/10 shadow-[4px_0_12px_rgba(0,0,0,0.95)]">
           <span class="inline-block w-1.5 h-1.5 rounded-full bg-white"></span>
           <span class="font-black uppercase tracking-wider text-white text-[11px] whitespace-nowrap">
             STUDIO RADAR:

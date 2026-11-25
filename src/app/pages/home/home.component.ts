@@ -191,11 +191,11 @@ export const HERO_SLIDES: HeroSlide[] = [
   imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <!-- ========================================================================= -->
-    <!-- 1. FULL-BLEED EDITORIAL HERO BANNER (MATCHING REFERENCE LAYOUT)           -->
+    <!-- 1. FULL-BLEED EDITORIAL HERO BANNER (STUDIO LUXURY DARK LIGHTING)        -->
     <!-- ========================================================================= -->
-    <section class="relative bg-black text-white min-h-[640px] lg:min-h-[760px] flex items-center overflow-hidden border-b border-zinc-900">
+    <section class="relative bg-[#0A0B0E] text-white min-h-[640px] lg:min-h-[760px] flex items-center overflow-hidden border-b border-white/[0.08]">
       
-      <!-- FULL-BLEED HERO BACKGROUND IMAGE (PERFECT FIT WITH ZERO GAP IN BETWEEN) -->
+      <!-- FULL-BLEED HERO BACKGROUND IMAGE WITH STUDIO RIM LIGHTING -->
       <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         @for (slide of heroSlides; track slide.id; let idx = $index) {
           <img 
@@ -208,29 +208,34 @@ export const HERO_SLIDES: HeroSlide[] = [
             [class.animate-image-drift]="activeSlideIndex() === idx"
             [class.opacity-0]="activeSlideIndex() !== idx"
             [class.scale-105]="activeSlideIndex() !== idx"
-            class="absolute inset-0 w-full h-full object-cover object-right grayscale contrast-125 brightness-90 transition-opacity duration-1000 ease-out pointer-events-none" />
+            class="absolute inset-0 w-full h-full object-cover object-right grayscale contrast-115 brightness-110 drop-shadow-2xl transition-opacity duration-1000 ease-out pointer-events-none" />
         }
 
-        <!-- Heavy Dark Scrim on Mobile & Tablet so white fabric/print textures NEVER clash with text -->
-        <div class="absolute inset-0 bg-black/80 lg:hidden z-10 pointer-events-none"></div>
+        <!-- Atmospheric Studio Lighting Layers: Highlights Garment Silhouette & Relieves Darkness -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[750px] h-[750px] studio-rim-glow pointer-events-none z-10"></div>
+        <div class="absolute right-1/4 top-1/3 w-[500px] h-[500px] bg-white/[0.06] blur-[120px] rounded-full pointer-events-none z-10"></div>
+        <div class="absolute left-1/4 -top-24 w-[400px] h-[400px] bg-white/[0.03] blur-[100px] rounded-full pointer-events-none z-10"></div>
 
-        <!-- Seamless Horizontal Gradient Blend on Desktop: Pure Solid Black on Left to Soft Transparent Right -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 via-35% to-transparent hidden lg:block z-10 pointer-events-none"></div>
+        <!-- Balanced Studio Scrim on Mobile & Tablet: Ensures High Contrast without Crushing Textures -->
+        <div class="absolute inset-0 bg-[#0A0B0E]/75 lg:hidden z-10 pointer-events-none"></div>
 
-        <!-- Subtle Top & Bottom Gradient Shadows for Perfect Edge Blending -->
-        <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none"></div>
-        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/70 to-transparent z-10 pointer-events-none"></div>
+        <!-- Seamless Studio Ambient Gradient on Desktop: Velvet Obsidian on Left to Luminous Garment on Right -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0A0B0E] via-[#0A0B0E]/85 via-42% to-transparent hidden lg:block z-10 pointer-events-none"></div>
+
+        <!-- Soft Top & Bottom Ambient Edge Blends -->
+        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0A0B0E] via-[#0A0B0E]/40 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0A0B0E] via-[#0A0B0E]/50 to-transparent z-10 pointer-events-none"></div>
       </div>
 
-      <!-- Left Column: Editorial Display Typography (Directly on Black Background) -->
+      <!-- Left Column: Editorial Display Typography -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 py-16 sm:py-24">
         <div class="max-w-2xl space-y-6">
           
           <!-- Category / Location Top Pill (Animated on slide change) -->
           @for (slide of heroSlides; track slide.id; let idx = $index) {
             @if (activeSlideIndex() === idx) {
-              <div class="animate-hero-pill-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/95 border border-zinc-700/90 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-xl">
-                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <div class="animate-hero-pill-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-zinc-200 text-xs font-mono uppercase tracking-widest shadow-xl">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span>3D ON-DEMAND APPAREL STUDIO &bull; {{ slide.tag }}</span>
               </div>
             }
@@ -239,7 +244,7 @@ export const HERO_SLIDES: HeroSlide[] = [
           <!-- Massive Bold Display Headline with Animated Letter & Word Reveal -->
           @for (slide of heroSlides; track slide.id; let idx = $index) {
             @if (activeSlideIndex() === idx) {
-              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.04] uppercase font-display drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
                 <span class="block overflow-hidden">
                   <span class="block animate-letter-reveal">{{ slide.headlineLine1 }}</span>
                 </span>
@@ -258,7 +263,7 @@ export const HERO_SLIDES: HeroSlide[] = [
           <!-- Subtitle Description (Animated on slide change) -->
           @for (slide of heroSlides; track slide.id; let idx = $index) {
             @if (activeSlideIndex() === idx) {
-              <p class="animate-hero-slide-in text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <p class="animate-hero-slide-in text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 {{ slide.description }}
               </p>
             }
@@ -267,16 +272,16 @@ export const HERO_SLIDES: HeroSlide[] = [
           <!-- Action Buttons -->
           <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <a routerLink="/customizer" 
-               class="btn-shimmer hover-lift-sm px-8 py-4 text-sm font-black text-black bg-white hover:bg-zinc-200 rounded-full shadow-bw transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,255,255,0.45)] flex items-center justify-center gap-3 uppercase tracking-wider active:scale-95 cursor-pointer group">
+               class="btn-luxury-primary hover-lift-sm px-8 py-4 text-sm font-black rounded-full flex items-center justify-center gap-3 uppercase tracking-wider cursor-pointer group">
               <span>Launch 3D Customizer</span>
               <span class="text-xs font-mono px-2 py-0.5 rounded bg-black text-white transition-transform duration-300 group-hover:scale-110">360&deg;</span>
               <span class="transition-transform duration-300 group-hover:translate-x-1.5 font-bold">&rarr;</span>
             </a>
 
             <a routerLink="/catalog" 
-               class="hover-lift-sm px-8 py-4 text-sm font-bold text-zinc-300 hover:text-white bg-zinc-950/90 hover:bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] rounded-full transition-all duration-300 flex items-center justify-center gap-2 text-center uppercase tracking-wider active:scale-95 cursor-pointer group">
+               class="btn-luxury-secondary hover-lift-sm px-8 py-4 text-sm font-bold rounded-full flex items-center justify-center gap-2 text-center uppercase tracking-wider cursor-pointer group">
               <span>Explore Catalog</span>
-              <span class="transition-transform duration-300 group-hover:translate-x-1.5 text-zinc-400 group-hover:text-white font-bold">&rarr;</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5 text-zinc-300 group-hover:text-white font-bold">&rarr;</span>
             </a>
           </div>
 
@@ -285,7 +290,7 @@ export const HERO_SLIDES: HeroSlide[] = [
             @if (activeSlideIndex() === idx) {
               <div class="pt-4 flex flex-wrap items-center gap-2.5 text-xs font-mono">
                 @for (metric of slide.metrics; track metric.label; let mIdx = $index) {
-                  <span class="animate-spec-badge-in inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-300 shadow-md"
+                  <span class="animate-spec-badge-in inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.07] backdrop-blur-md border border-white/10 text-zinc-200 shadow-md"
                         [style.animation-delay]="(mIdx * 80) + 'ms'">
                     <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                     <span>{{ metric.label }}: <strong class="text-white">{{ metric.value }}</strong></span>
@@ -299,9 +304,9 @@ export const HERO_SLIDES: HeroSlide[] = [
       </div>
 
       <!-- Minimalist 2px Auto-Scroll Progress Line along Bottom Border -->
-      <div class="absolute bottom-0 inset-x-0 h-[2px] bg-zinc-900/90 z-20 flex pointer-events-none">
+      <div class="absolute bottom-0 inset-x-0 h-[2px] bg-white/10 z-20 flex pointer-events-none">
         @for (slide of heroSlides; track slide.id; let idx = $index) {
-          <div class="flex-1 h-full bg-zinc-950 overflow-hidden relative border-r border-black/80 last:border-r-0">
+          <div class="flex-1 h-full bg-white/5 overflow-hidden relative border-r border-black/50 last:border-r-0">
             <div class="h-full bg-white transition-all ease-linear"
                  [style.width]="activeSlideIndex() === idx ? '100%' : (activeSlideIndex() > idx ? '100%' : '0%')"
                  [style.transition-duration]="activeSlideIndex() === idx ? '3500ms' : '0ms'">
@@ -315,11 +320,13 @@ export const HERO_SLIDES: HeroSlide[] = [
     <!-- ========================================================================= -->
     <!-- 2. CURATED CATEGORIES (PLACED SECOND AS SPECIFIED BY USER)                -->
     <!-- ========================================================================= -->
-    <section id="curated-categories" class="py-16 sm:py-24 bg-black text-white border-b border-zinc-900 relative">
+    <section id="curated-categories" class="py-16 sm:py-24 bg-[#0D0E12] text-white border-b border-white/[0.08] relative overflow-hidden">
+      <!-- Ambient Studio Spotlight -->
+      <div class="absolute inset-x-0 top-0 h-96 studio-ambient-spotlight pointer-events-none"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div class="scroll-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono uppercase tracking-widest shadow-md">
+          <div class="scroll-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-zinc-200 text-xs font-mono uppercase tracking-widest shadow-lg">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span>Apparel Collection &bull; 6 Curated Categories</span>
           </div>
@@ -335,22 +342,22 @@ export const HERO_SLIDES: HeroSlide[] = [
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           @for (cat of categories; track cat.id; let idx = $index) {
-            <div [class]="'theme-card-bw rounded-3xl overflow-hidden border border-zinc-800 flex flex-col justify-between group hover-lift transition-all duration-500 hover:border-zinc-400 bg-zinc-950 shadow-2xl relative scroll-reveal stagger-' + ((idx % 3) + 1)">
+            <div [class]="'card-luxury rounded-3xl overflow-hidden flex flex-col justify-between group hover-lift relative scroll-reveal stagger-' + ((idx % 3) + 1)">
               
               <!-- Category Image Showcase Banner with Motion Design & Ambient Floating Badges -->
-              <div class="image-motion-card relative h-52 sm:h-56 w-full overflow-hidden bg-zinc-900 border-b border-zinc-850">
+              <div class="image-motion-card relative h-56 sm:h-60 w-full overflow-hidden bg-zinc-900/60 border-b border-zinc-850">
                 <img 
                   [src]="cat.image" 
                   [alt]="cat.name" 
                   loading="lazy"
                   decoding="async"
-                  class="w-full h-full object-cover object-[75%_center] grayscale contrast-125 brightness-100 group-hover:scale-110 group-hover:brightness-110 group-hover:grayscale-0 transition-all duration-700 ease-out" />
+                  class="w-full h-full object-cover object-[75%_center] grayscale contrast-110 brightness-105 group-hover:scale-105 group-hover:brightness-115 group-hover:grayscale-0 transition-all duration-700 ease-out" />
                 
                 <!-- Dark Vignette Gradient on Bottom of Image -->
-                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#14161C] via-[#14161C]/30 to-transparent"></div>
 
                 <!-- Floating Top Left Index Pill with Ambient Float Motion -->
-                <span class="animate-ambient-float absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md text-white font-mono text-xs font-bold border border-zinc-700/80 shadow-md">
+                <span class="animate-ambient-float absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-white font-mono text-xs font-bold border border-white/20 shadow-md">
                   0{{ idx + 1 }}
                 </span>
 
@@ -363,11 +370,11 @@ export const HERO_SLIDES: HeroSlide[] = [
               </div>
 
               <!-- Content Body -->
-              <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-6 bg-zinc-950">
+              <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-6 bg-transparent">
                 
                 <div class="space-y-3.5">
                   <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl shrink-0 group-hover:border-zinc-600 group-hover:scale-105 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl shrink-0 group-hover:border-zinc-600 group-hover:scale-105 transition-all duration-300">
                       {{ cat.icon }}
                     </div>
                     <h3 class="text-xl sm:text-2xl font-black text-white group-hover:text-zinc-100 transition-colors uppercase font-display tracking-tight">
@@ -381,7 +388,7 @@ export const HERO_SLIDES: HeroSlide[] = [
                 </div>
 
                 <!-- Footer with Count and Dual Action Buttons -->
-                <div class="pt-5 border-t border-zinc-800/90 flex flex-wrap items-center justify-between gap-3">
+                <div class="pt-5 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-3">
                   <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-zinc-300 font-bold">
                     <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
                     {{ cat.count }}
@@ -390,11 +397,11 @@ export const HERO_SLIDES: HeroSlide[] = [
                   <div class="flex items-center gap-2">
                     <a [routerLink]="['/customize']" 
                        [queryParams]="{ category: cat.id }"
-                       class="px-3.5 py-2 rounded-full border border-zinc-700 bg-zinc-900 hover:bg-white hover:text-black text-white text-[11px] font-mono font-bold uppercase transition-all duration-300">
+                       class="px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white hover:text-black text-zinc-200 text-[11px] font-mono font-bold uppercase transition-all duration-300">
                       3D Studio
                     </a>
                     <a routerLink="/catalog" 
-                       class="btn-shimmer hover-lift-sm px-4 py-2 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-mono font-black uppercase transition-all duration-300 flex items-center gap-1.5 shadow-bw">
+                       class="px-4 py-2 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-mono font-black uppercase transition-all duration-300 flex items-center gap-1.5 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                       <span>Explore</span>
                       <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </a>
@@ -413,26 +420,27 @@ export const HERO_SLIDES: HeroSlide[] = [
     <!-- ========================================================================= -->
     <!-- 3. HIGH-CONTRAST MONOCHROME METRIC COUNTERS                               -->
     <!-- ========================================================================= -->
-    <section class="py-12 bg-black text-white border-b border-zinc-900 font-mono">
+    <section class="py-14 bg-[#0A0B0E] text-white border-b border-white/[0.08] font-mono relative overflow-hidden">
+      <div class="absolute inset-0 studio-ambient-spotlight pointer-events-none opacity-50"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           
-          <div class="scroll-reveal stagger-1 space-y-1 p-3 rounded-2xl border border-zinc-900 hover:border-zinc-700 transition duration-300">
+          <div class="scroll-reveal stagger-1 space-y-1 card-luxury p-4 rounded-2xl transition duration-300">
             <span class="text-3xl sm:text-4xl font-black text-white block tracking-tighter">10+ YEARS</span>
             <span class="text-xs text-zinc-400 uppercase tracking-widest block">Textile Hub Leadership</span>
           </div>
 
-          <div class="scroll-reveal stagger-2 space-y-1 p-3 rounded-2xl border border-zinc-900 hover:border-zinc-700 transition duration-300">
+          <div class="scroll-reveal stagger-2 space-y-1 card-luxury p-4 rounded-2xl transition duration-300">
             <span class="text-3xl sm:text-4xl font-black text-white block tracking-tighter">100,000+</span>
             <span class="text-xs text-zinc-400 uppercase tracking-widest block">Pieces Daily Output</span>
           </div>
 
-          <div class="scroll-reveal stagger-3 space-y-1 p-3 rounded-2xl border border-zinc-900 hover:border-zinc-700 transition duration-300">
+          <div class="scroll-reveal stagger-3 space-y-1 card-luxury p-4 rounded-2xl transition duration-300">
             <span class="text-3xl sm:text-4xl font-black text-white block tracking-tighter">24 - 48H</span>
             <span class="text-xs text-zinc-400 uppercase tracking-widest block">Rapid Dispatch SLA</span>
           </div>
 
-          <div class="scroll-reveal stagger-4 space-y-1 p-3 rounded-2xl border border-zinc-900 hover:border-zinc-700 transition duration-300">
+          <div class="scroll-reveal stagger-4 space-y-1 card-luxury p-4 rounded-2xl transition duration-300">
             <span class="text-3xl sm:text-4xl font-black text-white block tracking-tighter">&Delta;E &lt; 0.5</span>
             <span class="text-xs text-zinc-400 uppercase tracking-widest block">Spectrophotometer Accuracy</span>
           </div>
@@ -445,9 +453,12 @@ export const HERO_SLIDES: HeroSlide[] = [
     <!-- 4. CUSTOM PRINTING & 3D DESIGN STUDIO (FULL-BLEED HERO-STYLE BANNER SLIDER) -->
     <!-- ========================================================================= -->
     <section id="print-design-studio" 
-             class="relative bg-black text-white min-h-[640px] lg:min-h-[760px] flex items-center overflow-hidden border-b border-zinc-900">
+             class="relative bg-[#0D0E12] text-white min-h-[640px] lg:min-h-[760px] flex items-center overflow-hidden border-b border-white/[0.08]">
       
-      <!-- FULL-BLEED PRINT SHOWCASE BACKGROUND IMAGE (MATCHING HERO BANNER LAYOUT) -->
+      <!-- Studio Lighting Layers behind Print Samples -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[750px] h-[750px] studio-rim-glow pointer-events-none z-10"></div>
+        <div class="absolute right-1/4 top-1/3 w-[500px] h-[500px] bg-white/[0.05] blur-[120px] rounded-full pointer-events-none z-10"></div>
+        <!-- FULL-BLEED PRINT SHOWCASE BACKGROUND IMAGE -->
       <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         @for (tech of printTechnologies; track tech.id; let idx = $index) {
           <img 
@@ -459,14 +470,14 @@ export const HERO_SLIDES: HeroSlide[] = [
             [class.animate-image-drift]="activePrintTechIndex() === idx"
             [class.opacity-0]="activePrintTechIndex() !== idx"
             [class.scale-105]="activePrintTechIndex() !== idx"
-            class="absolute inset-0 w-full h-full object-cover object-center lg:object-right grayscale contrast-125 brightness-95 transition-opacity duration-1000 ease-out pointer-events-none" />
+            class="absolute inset-0 w-full h-full object-cover object-center lg:object-right grayscale contrast-110 brightness-110 drop-shadow-2xl transition-opacity duration-1000 ease-out pointer-events-none" />
         }
 
         <!-- Dark Scrim on Mobile & Tablet so white fabric/print textures NEVER clash with text -->
-        <div class="absolute inset-0 bg-black/85 lg:hidden z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[#0D0E12]/75 lg:hidden z-10 pointer-events-none"></div>
 
         <!-- Seamless Horizontal Gradient Blend on Desktop: Pure Solid Black on Left to Soft Transparent Right -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/85 via-40% to-transparent hidden lg:block z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0D0E12] via-[#0D0E12]/85 via-42% to-transparent hidden lg:block z-10 pointer-events-none"></div>
 
         <!-- Subtle Top & Bottom Gradient Shadows for Perfect Edge Blending -->
         <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/50 to-transparent z-10 pointer-events-none"></div>
@@ -584,7 +595,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     <!-- ========================================================================= -->
     <!-- 5. CLIENT TRUST & BRAND LOGO BAR ("TRUSTED BY LEADING LABELS")            -->
     <!-- ========================================================================= -->
-    <section class="py-14 bg-black text-white border-b border-zinc-900 relative overflow-hidden">
+    <section class="py-14 bg-[#0A0B0E] text-white border-b border-white/[0.08] relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center space-y-3 mb-10">
@@ -622,7 +633,8 @@ export const HERO_SLIDES: HeroSlide[] = [
     <!-- ========================================================================= -->
     <!-- 6. FREQUENTLY ASKED QUESTIONS ACCORDION (PRODUCTION, MOQ, SLA & DURABILITY) -->
     <!-- ========================================================================= -->
-    <section id="faq-section" class="py-20 sm:py-28 bg-zinc-950 text-white border-b border-zinc-900 relative">
+    <section id="faq-section" class="py-20 sm:py-28 bg-[#0D0E12] text-white border-b border-white/[0.08] relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-96 studio-ambient-spotlight pointer-events-none"></div>
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <!-- Section Header -->
@@ -697,7 +709,7 @@ export const HERO_SLIDES: HeroSlide[] = [
         </div>
 
         <!-- Technical Assistance Support Box at bottom of FAQ -->
-        <div class="p-6 sm:p-8 rounded-3xl bg-zinc-950 border border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="card-luxury p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
           <div class="space-y-1 text-center sm:text-left">
             <h4 class="text-base font-bold text-white uppercase tracking-tight">
               Have specific manufacturing or artwork questions?
