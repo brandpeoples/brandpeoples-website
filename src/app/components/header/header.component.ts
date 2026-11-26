@@ -10,22 +10,22 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     <!-- ========================================================================= -->
     <!-- 1. PURE BLACK & WHITE MINIMALIST NAVIGATION BAR                           -->
     <!-- ========================================================================= -->
-    <header class="bg-[#0A0B0E]/85 backdrop-blur-xl sticky top-0 z-40 border-b border-white/[0.08] transition-all duration-200">
+    <header class="bg-white/95 backdrop-blur-xl sticky top-0 z-40 border-b border-gray-200 transition-all duration-200 shadow-[0_1px_4px_rgba(0,0,0,0.03)]">
       <div class="max-w-[1600px] mx-auto px-3 sm:px-5 lg:px-6">
         <div class="flex items-center justify-between h-16 sm:h-[68px] gap-2 lg:gap-3 xl:gap-4">
           
           <!-- Brand Logo Lockup (Monochrome Matching Screenshot) -->
           <a routerLink="/" class="flex items-center gap-2 sm:gap-2.5 group shrink-0 select-none">
             <img 
-              src="images/brand/logo_white.png" 
+              src="images/brand/logo_dark.png" 
               alt="Brand Peoples Logo" 
               class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200" />
 
             <div class="flex flex-col whitespace-nowrap">
-              <span class="font-bold text-base sm:text-lg xl:text-xl tracking-tight text-white group-hover:text-zinc-200 transition-colors lowercase font-sans leading-none">
+              <span class="font-bold text-base sm:text-lg xl:text-xl tracking-tight text-neutral-950 group-hover:text-black transition-colors lowercase font-sans leading-none">
                 brandpeoples
               </span>
-              <span class="text-[7px] sm:text-[7.5px] font-mono tracking-[0.16em] text-zinc-400 uppercase mt-0.5">
+              <span class="text-[7px] sm:text-[7.5px] font-mono tracking-[0.16em] text-neutral-500 uppercase mt-0.5">
                 STUDIO &bull; CUSTOM 3D &bull; MERCH
               </span>
             </div>
@@ -36,104 +36,104 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
             <!-- Home -->
             <a routerLink="/" 
                [routerLinkActiveOptions]="{exact: true}"
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaHome="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Home
-                <span *ngIf="rlaHome.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaHome.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- 3D Customizer -->
             <a routerLink="/customizer" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaCustom="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1 flex items-center gap-1.5">
                 <span>3D Customizer</span>
-                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-black tracking-wider uppercase rounded-[3px] bg-white text-black leading-none">
+                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-black tracking-wider uppercase rounded-[3px] bg-black text-white leading-none">
                   3D LIVE
                 </span>
-                <span *ngIf="rlaCustom.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaCustom.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- Catalogs Navigation -->
             <a routerLink="/catalog" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaCat="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Catalogs
-                <span *ngIf="rlaCat.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaCat.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- Printing Technologies -->
             <a routerLink="/capabilities" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaCap="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Technology
-                <span *ngIf="rlaCap.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaCap.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- Quality Standards -->
             <a routerLink="/quality" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaQual="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Quality &amp; Lab
-                <span *ngIf="rlaQual.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaQual.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- Gift Kits Navigation -->
             <a routerLink="/gift-kits" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaGifts="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1 flex items-center gap-1.5">
                 <span>Gift Kits</span>
-                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-bold tracking-wider uppercase rounded-[3px] bg-zinc-900 border border-zinc-700 text-zinc-300 leading-none">
+                <span class="px-1.5 py-0.5 text-[8.5px] font-mono font-bold tracking-wider uppercase rounded-[3px] bg-neutral-100 border border-neutral-300 text-neutral-700 leading-none">
                   7 PACKS
                 </span>
-                <span *ngIf="rlaGifts.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaGifts.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
 
             <!-- Contact & Quotes -->
             <a routerLink="/contact-us" 
-               routerLinkActive="text-white font-medium"
+               routerLinkActive="text-neutral-950 font-bold"
                #rlaContact="routerLinkActive"
-               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-zinc-400 hover:text-white transition-colors whitespace-nowrap shrink-0">
+               class="h-full flex items-center px-2 xl:px-2.5 2xl:px-3 text-xs 2xl:text-[13px] font-medium text-neutral-600 hover:text-black transition-colors whitespace-nowrap shrink-0">
               <span class="relative py-1">
                 Contact &amp; Quotes
-                <span *ngIf="rlaContact.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"></span>
+                <span *ngIf="rlaContact.isActive" class="absolute -bottom-2 left-0 right-0 h-[2px] bg-black"></span>
               </span>
             </a>
           </nav>
 
-          <!-- Right Action Buttons (High-Contrast White on Black) -->
+          <!-- Right Action Buttons (High-Contrast Monochrome) -->
           <div class="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
             <!-- Phone Call Pill with Call Symbol -->
             <a href="tel:9629986444" 
                title="Call +91 96299 86444"
-               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3 py-1.5 xl:px-3.5 xl:py-2 text-xs font-mono font-medium text-white border border-zinc-800 rounded-full hover:bg-zinc-900 hover:border-zinc-700 transition-all inline-flex items-center gap-1.5 shrink-0">
-              <svg class="w-3.5 h-3.5 text-zinc-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3 py-1.5 xl:px-3.5 xl:py-2 text-xs font-mono font-medium text-neutral-800 bg-white border border-neutral-300 rounded-full hover:bg-neutral-50 transition-all inline-flex items-center gap-1.5 shrink-0 shadow-sm">
+              <svg class="w-3.5 h-3.5 text-neutral-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
               <span class="hidden xl:inline">+91 96299 86444</span>
               <span class="inline xl:hidden text-[11px] font-sans">Call</span>
             </a>
 
-            <!-- Inverted Solid White Button -->
+            <!-- Inverted Solid Black Button -->
             <a routerLink="/customizer" 
-               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3.5 py-1.5 xl:px-4 xl:py-2 text-xs font-black text-black bg-white hover:bg-zinc-200 rounded-full transition-all inline-flex items-center shrink-0 cursor-pointer uppercase tracking-wider">
+               class="hover-lift-sm active:scale-95 whitespace-nowrap px-3.5 py-1.5 xl:px-4 xl:py-2 text-xs font-black text-white bg-black hover:bg-neutral-800 rounded-full transition-all inline-flex items-center shrink-0 cursor-pointer uppercase tracking-wider shadow-sm">
               <span>3D STUDIO</span>
             </a>
           </div>
@@ -142,12 +142,12 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
           <div class="flex items-center lg:hidden shrink-0">
             <button (click)="toggleMobileMenu()" 
                     type="button" 
-                    class="p-2 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-900 transition-colors"
+                    class="p-2 rounded-lg text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors"
                     aria-label="Toggle Navigation">
               <svg *ngIf="!isMobileMenuOpen()" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
-              <svg *ngIf="isMobileMenuOpen()" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg *ngIf="isMobileMenuOpen()" class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
             </button>
@@ -157,54 +157,54 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
       </div>
 
       <!-- Mobile Navigation Drawer -->
-      <div *ngIf="isMobileMenuOpen()" class="lg:hidden border-t border-zinc-800 bg-black px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
+      <div *ngIf="isMobileMenuOpen()" class="lg:hidden border-t border-neutral-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
         <a routerLink="/" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
+           routerLinkActive="bg-neutral-100 text-black font-bold"
            [routerLinkActiveOptions]="{exact: true}"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition">
           Home
         </a>
         <a routerLink="/customizer" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition flex items-center justify-between">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition flex items-center justify-between">
           <span>3D Customizer Studio</span>
-          <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-white text-black">3D LIVE</span>
+          <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-black text-white">3D LIVE</span>
         </a>
         <a routerLink="/catalog" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition">
           Catalogs
         </a>
         <a routerLink="/capabilities" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition">
           Printing Technology
         </a>
         <a routerLink="/quality" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition">
           Quality Standards
         </a>
         <a routerLink="/gift-kits" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition flex items-center justify-between">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition flex items-center justify-between">
           <span>Corporate Gift Kits</span>
-          <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-zinc-800 text-zinc-300 border border-zinc-700">7 PACKS</span>
+          <span class="px-2 py-0.5 text-xs font-mono font-bold rounded bg-neutral-100 text-neutral-700 border border-neutral-300">7 PACKS</span>
         </a>
         <a routerLink="/contact-us" (click)="closeMobileMenu()" 
-           routerLinkActive="bg-white/10 text-white font-bold"
-           class="block px-3 py-2 rounded-lg text-base font-medium text-zinc-300 hover:bg-zinc-900 transition">
+           routerLinkActive="bg-neutral-100 text-black font-bold"
+           class="block px-3 py-2 rounded-lg text-base font-medium text-neutral-700 hover:bg-neutral-50 transition">
           Contact &amp; Quotes
         </a>
 
-        <div class="pt-3 border-t border-zinc-800 flex flex-col gap-2">
-          <a href="tel:9629986444" class="w-full text-center py-2.5 border border-zinc-800 rounded-xl font-mono text-zinc-300 text-sm flex items-center justify-center gap-2">
-            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="pt-3 border-t border-neutral-200 flex flex-col gap-2">
+          <a href="tel:9629986444" class="w-full text-center py-2.5 border border-neutral-300 rounded-xl font-mono text-neutral-800 text-sm flex items-center justify-center gap-2 bg-neutral-50">
+            <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
             <span>Call: +91 96299 86444</span>
           </a>
-          <a routerLink="/customizer" (click)="closeMobileMenu()" class="w-full text-center py-3 bg-white text-black font-black uppercase text-sm rounded-xl shadow-md">
+          <a routerLink="/customizer" (click)="closeMobileMenu()" class="w-full text-center py-3 bg-black text-white font-black uppercase text-sm rounded-xl shadow-md">
             Open 3D Studio &rarr;
           </a>
         </div>
@@ -212,15 +212,15 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
     </header>
 
     <!-- ========================================================================= -->
-    <!-- 2. MONOCHROME PRODUCTION RADAR TICKER                                     -->
+    <!-- 2. PRODUCTION RADAR TICKER                                                -->
     <!-- ========================================================================= -->
-    <div class="bg-black text-zinc-400 text-xs py-2 border-b border-zinc-900 overflow-hidden relative shadow-sm font-mono">
+    <div class="bg-neutral-50 text-neutral-600 text-xs py-2 border-b border-neutral-200 overflow-hidden relative shadow-sm font-mono">
       <div class="max-w-[1600px] mx-auto flex items-center">
         
         <!-- Pinned Static Label on Left -->
-        <div class="shrink-0 bg-[#0E1015] z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-white/10 shadow-[4px_0_12px_rgba(0,0,0,0.95)]">
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-white"></span>
-          <span class="font-black uppercase tracking-wider text-white text-[11px] whitespace-nowrap">
+        <div class="shrink-0 bg-neutral-100 z-20 px-4 sm:px-6 flex items-center gap-2 border-r border-neutral-200 shadow-sm">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-black uppercase tracking-wider text-neutral-900 text-[11px] whitespace-nowrap">
             STUDIO RADAR:
           </span>
         </div>
@@ -232,81 +232,81 @@ import { RouterModule, RouterLinkActive } from '@angular/router';
             <!-- MARQUEE SET 1 -->
             <div class="flex items-center gap-6 whitespace-nowrap">
               <div class="flex items-center gap-1.5 whitespace-nowrap">
-                <span class="text-white font-bold">3.20 / Pc</span>
-                <span class="text-zinc-400">&bull; 48h Batch Ready</span>
+                <span class="text-neutral-900 font-bold">3.20 / Pc</span>
+                <span class="text-neutral-500">&bull; 48h Batch Ready</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
-                <span class="text-white font-medium bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
+                <span class="text-neutral-500 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
+                <span class="text-neutral-800 font-medium bg-white px-2 py-0.5 rounded border border-neutral-200 shadow-sm">1,240+ 3D Renders Generated Today</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="bg-zinc-900 text-zinc-200 border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
+                <span class="bg-neutral-900 text-white px-2.5 py-0.5 rounded-full font-bold">
                   ● 2400 DPI DTF GANG SHEETS
                 </span>
-                <span class="text-white font-bold">SAME-DAY DISPATCH</span>
+                <span class="text-neutral-900 font-bold">SAME-DAY DISPATCH</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
-                <span class="text-white font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
+                <span class="text-neutral-500 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
+                <span class="text-neutral-900 font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">TIRUPPUR HUB:</span>
-                <span class="text-white font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
+                <span class="text-neutral-500 uppercase tracking-wide">TIRUPPUR HUB:</span>
+                <span class="text-neutral-900 font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
             </div>
 
             <!-- MARQUEE SET 2 (DUPLICATE FOR SEAMLESS LOOP) -->
             <div class="flex items-center gap-6 whitespace-nowrap" aria-hidden="true">
               <div class="flex items-center gap-1.5 whitespace-nowrap">
-                <span class="text-white font-bold">3.20 / Pc</span>
-                <span class="text-zinc-400">&bull; 48h Batch Ready</span>
+                <span class="text-neutral-900 font-bold">3.20 / Pc</span>
+                <span class="text-neutral-500">&bull; 48h Batch Ready</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
-                <span class="text-white font-medium bg-zinc-900/80 px-2 py-0.5 rounded border border-zinc-700">1,240+ 3D Renders Generated Today</span>
+                <span class="text-neutral-500 uppercase tracking-wide">WEBGL 3D VIEWPORT:</span>
+                <span class="text-neutral-800 font-medium bg-white px-2 py-0.5 rounded border border-neutral-200 shadow-sm">1,240+ 3D Renders Generated Today</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="bg-zinc-900 text-zinc-200 border border-zinc-700 px-2.5 py-0.5 rounded-full font-bold">
+                <span class="bg-neutral-900 text-white px-2.5 py-0.5 rounded-full font-bold">
                   ● 2400 DPI DTF GANG SHEETS
                 </span>
-                <span class="text-white font-bold">SAME-DAY DISPATCH</span>
+                <span class="text-neutral-900 font-bold">SAME-DAY DISPATCH</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
-                <span class="text-white font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
+                <span class="text-neutral-500 uppercase tracking-wide">BIO-WASHED COMBED COTTON:</span>
+                <span class="text-neutral-900 font-bold">180 &ndash; 240 GSM &bull; OEKO-TEX STD 100</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
 
               <div class="flex items-center gap-2 whitespace-nowrap">
-                <span class="text-zinc-400 uppercase tracking-wide">TIRUPPUR HUB:</span>
-                <span class="text-white font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
+                <span class="text-neutral-500 uppercase tracking-wide">TIRUPPUR HUB:</span>
+                <span class="text-neutral-900 font-bold">EXPRESS DELIVERY TO COIMBATORE &amp; TAMIL NADU</span>
               </div>
 
-              <span class="text-zinc-700">&bull;</span>
+              <span class="text-neutral-300">&bull;</span>
             </div>
 
           </div>

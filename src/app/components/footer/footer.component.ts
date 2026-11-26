@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
         <!-- ========================================================================= -->
         <!-- 1. TOP QUICK DIRECTORY JUMP BAR (FAST HORIZONTAL PILL NAVIGATION)        -->
         <!-- ========================================================================= -->
-        <div class="p-4 sm:p-5 rounded-3xl card-luxury border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="p-4 sm:p-5 rounded-3xl bg-neutral-900 border border-neutral-800 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
           <div class="flex items-center gap-2.5">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">Fast Navigation Directory</span>
@@ -285,7 +285,7 @@ import { FormsModule } from '@angular/forms';
         <!-- ========================================================================= -->
         <!-- 3. SCULPTED LUXURY UTILITY BAR & ACCREDITATION CONSOLE                    -->
         <!-- ========================================================================= -->
-        <div class="rounded-3xl card-luxury border border-white/10 p-5 sm:p-6 backdrop-blur-md shadow-2xl space-y-5">
+        <div class="rounded-3xl bg-neutral-900 border border-neutral-800 p-5 sm:p-6 backdrop-blur-md shadow-xl space-y-5">
           
           <!-- Top Row: Full Route Navigation Suite & Back to Top -->
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
